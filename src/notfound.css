@@ -1,0 +1,47 @@
+
+h1{
+    color: white;
+}
+.notfound{
+    border-style: solid;
+    height: 100vh;
+    border-color: black;
+    text-align: center;
+}
+.fas.fa-lightbulb{
+    font-size: 200pt;
+    padding: none;
+    margin: 70px;
+}
+i{
+    padding: none;
+    margin: none;
+}
+.fas.fa-plug{
+    color: red;
+}
+.holder{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    }
+.socket{
+    margin: 0 auto;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    height: 100px;
+    width: 150px;
+    border-radius: 2em;
+    border-style: solid;
+    border-color: #111;
+    border-width: 1em;
+}
+.sock{
+    margin: 0 auto;
+    margin-top: 40%;
+    border-radius: 2em;
+    background-color: #111;
+     height: 40%;
+     width: 12px;
+}

@@ -1,0 +1,142 @@
+*{
+  color: #4b6584;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}
+.App{
+  color: grey;
+  background-color: black;
+  min-height: 100vh;
+}
+.landing{
+  min-height: 100vh;
+}
+h1, h2{
+  color: #26de81;
+}
+
+/*GRID */
+.grid{
+  display:grid;
+}
+.grid-col-two{
+  grid-template-columns: 1fr 1fr;
+}
+.grid-span-two{
+  grid-column: 1 / span 2;
+}
+.Maxd{
+    text-align: center;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+.cat-name{
+  grid-template-columns:repeat(8, 1fr);
+  color: #20bf6b;
+}
+.cat-data{
+  grid-template-columns:repeat(8, 1fr);
+}
+/*BUTTONS*/
+button{
+  margin: 10px;
+  padding:10px;
+  border: none;
+  font-size: 15pt;
+  border-radius: 2em;
+  font-family: 'Roboto', sans-serif;
+}
+button.addLoad{
+  color: blue;
+  background-color: white;
+  border: 2px solid blue;
+  width: 200px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+button.currentWattage{
+  width: 100px;
+}
+button.button-delete-load{
+  margin: none;
+  font-size: 5pt;
+  margin: 0;
+  padding: 0;
+  background-color: #fc5c65;
+  color: white;
+}
+button.button-delete-load:hover{
+  box-shadow: 0px 0px 5px #eb3b5a;
+}
+.button-active{
+  background-color: white;
+  color:#20bf6b;
+  border: 2px solid #26de81;
+  box-shadow: 0px 5px 10px -5px #d1d8e0;
+}
+.button-inactive{
+  background-color: #ccc;
+  color:#4b6584;
+  border-color: none;
+}
+.landingButton{
+  background-color: black;
+  box-shadow: 0px 0px 5px yellowgreen;
+  padding: 10px;
+}
+/*INPUTS*/
+input{
+  border:none;
+  text-align: center;
+  padding: 5px;
+  color: #4b6584;
+  background: none;
+  border:none;
+  border-bottom: solid 2px grey;
+  font-size: 15pt;
+}
+input#voltage, input#WI{
+  width: 100px;
+  margin: 0 auto;
+  color: darkslategray;
+}
+input:focus{
+  border-bottom-color: #26de81;
+}
+button:hover{
+  box-shadow: 0px 0px 5px #26de81;
+  color: black; 
+}
+button.pf{
+  width:50px;
+  margin: 5px;
+}
+h1.Pagetitle{
+  color:unset;
+  color: #15b15e;
+  text-align: center;
+}
+
+.picker{
+  color:white;
+  font-family: 'Roboto', sans-serif;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.container{
+  background-color: white;
+  margin: 1em;
+  padding: 1em;
+  width: 400px;
+  text-align: center;
+}
+
+.picker.title{
+  color: #26de81;
+}
+
+h2.title{
+  margin:0 auto;
+  padding-top: 10px;
+  font-size: 15pt;
+}
