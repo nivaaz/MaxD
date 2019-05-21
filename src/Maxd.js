@@ -6,15 +6,15 @@ class Maxd extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Amount: 1,
-      Name: "Item",
-      Voltage: 240.0,
-      Current: 15.0,
-      Wattage: 10.0,
+      amount: 1,
+      name: "Item",
+      voltage: 240.0,
+      current: 15.0,
+      wattage: 10.0,
       select: "wattage",
-      Pf: 1.0,
-      Diversity: 1.0,
-      Data: [],
+      powerFactor: 1.0,
+      diversity: 1.0,
+      data: [],
       totalW: 1.0,
       totalA: 11,
       totalSelect: 'A'
@@ -28,11 +28,12 @@ class Maxd extends Component {
     this.setTotalA = this.setTotalA.bind(this);
     this.setTotalW = this.setTotalW.bind(this);
   }
+  
   /* update the total wattage load */
   setTotalW() {
     let sum = 0;
-    this.state.Data.map((option) =>
-      sum = sum + (option.Amount * option.Wattage)
+    this.state.data.map((option) =>
+      sum = sum + (option.amount * option.wattage)
     )
     this.setState({
       totalW: sum
@@ -41,8 +42,8 @@ class Maxd extends Component {
   /* update the total current load */
   setTotalA() {
     let sum = 0;
-    this.state.Data.map((option) =>
-      sum = sum + (option.Amount * option.Current)
+    this.state.data.map((option) =>
+      sum = sum + (option.amount * option.current)
     )
     this.setState({
       totalA: sum
@@ -52,13 +53,13 @@ class Maxd extends Component {
   /* reset all the states to a default value. */
   resetAll() {
     this.setState({
-      Voltage: 240.0,
-      Current: 1.0,
-      Amount: 1,
-      Diversity: 1.0,
-      Pf: 1.0,
-      Name: "Load",
-      Wattage: 240.0
+      voltage: 240.0,
+      current: 1.0,
+      amount: 1,
+      diversity: 1.0,
+      powerFactor: 1.0,
+      name: "Load",
+      wattage: 240.0
     })
   } /* on submission of the form */
   onSubmit(e) {
@@ -67,33 +68,33 @@ class Maxd extends Component {
     var wattage = 0;
     var current = 0;
     if (this.state.select === "current") {
-      wattage = getWattage(parseInt(this.state.Voltage),
-        parseInt(this.state.Current),
-        parseInt(this.state.Diversity),
-        parseInt(this.state.Pf))
+      wattage = getWattage(this.state.voltage,
+        this.state.current,
+        this.state.diversity,
+        this.state.powerFactor)
       current = this.state.Current;
     } else if (this.state.select === "wattage") {
-      current = getCurrent(parseInt(this.state.Voltage),
-        parseInt(this.state.Wattage),
-        parseInt(this.state.Diversity),
-        parseInt(this.state.Pf))
-      wattage = this.state.Wattage;
+      current = getCurrent(this.state.voltage,
+        this.state.wattage,
+        this.state.diversity,
+        this.state.powerFactor)
+      wattage = this.state.wattage;
     }
 
     const dataNew = {
-      "Amount": this.state.Amount,
-      "Name": this.state.Name,
-      "Voltage": this.state.Voltage,
-      "Current": current,
-      "Pf": this.state.Pf,
-      "Wattage": wattage,
-      "Diversity": this.state.Diversity
+      "amount": this.state.Amount,
+      "name": this.state.Name,
+      "voltage": this.state.Voltage,
+      "current": current,
+      "powerFactor": this.state.Pf,
+      "wattage": wattage,
+      "diversity": this.state.Diversity
     };
 
-    const currData = this.state.Data;
+    const currData = this.state.data;
     currData.push(dataNew)
     this.setState({
-      Data: currData
+      data: currData
     })
     this.resetAll(); //resets the input values.
     this.setTotalA();
@@ -101,51 +102,21 @@ class Maxd extends Component {
   }
   /* red dleete button next to load */
   onClickDeleteLoad(e) {
-    const currLoadData = this.state.Data
+    const currLoadData = this.state.data
     currLoadData.splice(e.target.id, 1)
     this.setState({
-      Data: currLoadData
+      data: currLoadData
     })
   }
   /* on the change of custom input */
   onChangeInput(e) {
     e.preventDefault();
     var id = e.target.id
-    if (id === "voltage") {
-      this.setState({
-        Voltage: parseInt(e.target.value)
-      }, () => console.log(this.state))
-    }
-    else if (id === "current") {
-      this.setState({
-        Current: parseInt(e.target.value)
-      }, () => console.log(this.state))
-    }
-    else if (id === "wattage") {
-      this.setState({
-        Wattage: parseInt(e.target.value)
-      }, () => console.log(this.state))
-    }
-    else if (id === "pf") {
-      this.setState({
-        Pf: parseFloat(e.target.value)
-      }, () => console.log(this.state))
-    }
-    else if (id === "diversity") {
-      this.setState({
-        Diversity: parseFloat(e.target.value)
-      }, () => console.log(this.state))
-    }
-    else if (id === "name") {
-      this.setState({
-        Name: e.target.value
-      }, () => console.log(this.state))
-    }
-    else if (id === "amount") {
-      this.setState({
-        Amount: parseInt(e.target.value)
-      }, () => console.log(this.state))
-    }
+    var value = id === 'name' ? e.target.value : parseFloat(e.target.value)
+    console.log(id, value)
+    this.setState({
+      [id]: value
+    })
   }
   /* FUNCTION TO HANDLE ALL BUTTON INTPUTS FROM 
   VOLTAGE   CURRENT   DIVERSITY   WATTAGE    PF
@@ -159,61 +130,39 @@ class Maxd extends Component {
     }
     // var volts = this.state.Voltage;
     var id = e.target.id
-    if (id === "voltage") {
-      this.setState({
-        Voltage: parseInt(e.target.value)
-      }, () => console.log(this.state))
-    }
-    else if (id === "current") {
-      this.setState({
-        Current: parseInt(e.target.value)
-      }, () => console.log(this.state))
-    }
-    else if (id === "wattage") {
-      this.setState({
-        Wattage: parseInt(e.target.value)
-      }, () => console.log(this.state))
-    }
-    else if (id === "pf") {
-      this.setState({
-        Pf: parseFloat(e.target.value)
-      }, () => console.log(this.state))
-    }
-    else if (id === "diversity") {
-      this.setState({
-        Diversity: parseFloat(e.target.value)
-      }, () => console.log(this.state))
-    }
-    else if (id === "select") {
+    var value = id === 'select' || id === 'name' ? e.target.value : parseFloat(e.target.value)
+    console.log(id, value)
+    if (id === "select") {
       /* HARDCODED FIX FOR WATTAGE NAME & BUTTON RENDER ERROR */
       if (e.target.value === "current")
-        this.setState({
-          select: e.target.value
-        }, () => console.log("select changed " + this.state.select))
+        value = e.target.value
       else {
-        this.setState({
-          select: "wattage"
-        }, () => console.log("select changed " + this.state.select))
+        value = "wattage"
       }
     }
+
+    this.setState({
+      [id]: value
+    })
+    
   }
   renderPowerFactorButtons() {
     const pf = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
     const buttons = pf.map((option, key) => {
-      console.log(this.state.Pf === option, this.state.Pf, option)
-      const buttonClass = this.state.Pf && this.state.Pf === option ? 'button-active' : 'button-inactive'
+      // console.log(this.state.powerFactor === option, this.state.powerFactor, option)
+      const buttonClass = this.state.powerFactor && this.state.powerFactor === option ? 'button-active' : 'button-inactive'
       return (
-        <button id="pf" className={buttonClass} key={key} value={option} onClick={this.onButtonClick}> {option}</button>
+        <button id="powerFactor" className={buttonClass} key={key} value={option} onClick={this.onButtonClick}> {option}</button>
       )
     })
     return (<div>{buttons}</div>
     )
   }
   renderDiversityButtons() {
-    const pf = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
-    const buttons = pf.map((option, key) => {
-      console.log(this.state.Diversity === option, this.state.Diversity, option)
-      const buttonClass = this.state.Diversity && this.state.Diversity === option ? 'button-active' : 'button-inactive'
+    const diversityOptions = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+    const buttons = diversityOptions.map((option, key) => {
+      // console.log(this.state.diversity === option, this.state.diversity, option)
+      const buttonClass = this.state.diversity && this.state.diversity === option ? 'button-active' : 'button-inactive'
       return (
         <button id="diversity" className={buttonClass} key={key} value={option} onClick={this.onButtonClick}> {option}</button>
       )
@@ -224,8 +173,8 @@ class Maxd extends Component {
   renderVoltageButtons() {
     const voltageOptions = [230, 240, 400, 415]
     return voltageOptions.map((option, key) => {
-      console.log(this.state.Voltage === option, this.state.Voltage, option)
-      const buttonClass = this.state.Voltage && this.state.Voltage === option ? 'button-active' : 'button-inactive'
+      // console.log(this.state.voltage === option, this.state.voltage, option)
+      const buttonClass = this.state.voltage && this.state.voltage === option ? 'button-active' : 'button-inactive'
       return (
         <button id="voltage" className={buttonClass} key={key} value={option} onClick={this.onButtonClick}> {option}</button>
       )
@@ -271,35 +220,35 @@ class Maxd extends Component {
     }, () => console.log(this.state.totalSelect))
   }
   renderLoad() {
-    return this.state.Data.map((load, key) => {
+    return this.state.data.map((load, key) => {
       return (
         <div key={key} className="cat-data grid">
-          <p> {load.Amount} </p>
-          <p> {load.Name} </p>
-          <p> {load.Voltage} </p>
-          <p> {load.Wattage} </p>
-          <p> {load.Current} </p>
-          <p> {load.Pf} </p>
-          <p> {load.Diversity} </p>
+          <p> {load.amount} </p>
+          <p> {load.name} </p>
+          <p> {load.voltage} </p>
+          <p> {load.wattage} </p>
+          <p> {load.current} </p>
+          <p> {load.powerFactor} </p>
+          <p> {load.diversity} </p>
           <button id={key} onClick={this.onClickDeleteLoad} className="button-delete-load"> X </button>
         </div>
       )
     })
   }
   /* get the wattage from the input box */
-  getWattageCurrent(e) {
-    e.preventDefault();
-    console.log(e.target.value)
-    if (this.state.select === "wattage") {
-      this.setState({
-        select: e.target.value
-      }, () => console.log(this.state.Wattage))
-    } else if (this.state.select === "current") {
-      this.setState({
-        select: e.target.value
-      }, () => console.log(this.state.Current))
-    }
-  }
+  // getWattageCurrent(e) {
+  //   e.preventDefault();
+  //   console.log(e.target.value)
+  //   if (this.state.select === "wattage") {
+  //     this.setState({
+  //       select: e.target.value
+  //     }, () => console.log(this.state.Wattage))
+  //   } else if (this.state.select === "current") {
+  //     this.setState({
+  //       select: e.target.value
+  //     }, () => console.log(this.state.Current))
+  //   }
+  // }
   render() {
     return (
       <div className="grid grid-col-two">
@@ -307,11 +256,11 @@ class Maxd extends Component {
         <form className="MaxD">
           <div className="container">
             <h2 className="picker title"> Name your load</h2>
-            <input defaultValue={this.state.Name} type="text" onChange={this.onChangeInput} id="name" />
+            <input defaultValue={this.state.name} type="text" onChange={this.onChangeInput} id="name" />
           </div>
           <div className="container">
             <h2 className="picker title"> How many repitions of this load?</h2>
-            <input defaultValue={this.state.Amount} type="number" onChange={this.onChangeInput} id="amount" />
+            <input defaultValue={this.state.amount} type="number" onChange={this.onChangeInput} id="amount" />
           </div>
           <div className="container">
             <h2 className="picker title"> Pick a Voltage</h2>
