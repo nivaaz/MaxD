@@ -30,22 +30,16 @@ h1.title{
   padding-top: 30vh;
   font-size: 50pt;
   color: unset;
-  color: yellowgreen;
+  color: #a55eea;
 }
-button.landing{
-  margin:100px;
+button.landingButton{
   padding:30px;
   border: none;
   font-size: 15pt;
   color: white; 
   border-radius: 2em;
-  background-color: #000f1d;
+  background-color: #a55eea;
   font-family: 'Roboto', sans-serif;
-  box-shadow: 0px 0px 20px 0px yellowgreen;
-}
-button.landing:onHover{
-  box-shadow: 0px 0px 50px 0px yellow;
-
 }
 .App-header {
   background-color: #282c34;

@@ -7,12 +7,48 @@ import { getWattage, getCurrent } from './calcFunctions.js'
 class Maxd extends Component {
   constructor(props) {
     super(props);
-    this.state = { Amount: 1, Name: "Item", Voltage: 240, Current: 15, Wattage: 10, select: "wattage", Pf: 1, Diversity: 1, Data: [] }
+    this.state = { Amount: 1,
+       Name: "Item",
+        Voltage: 240,
+         Current: 15,
+          Wattage: 10,
+           select: "wattage",
+            Pf: 1,
+             Diversity: 1,
+              Data: [],
+               totalW: 1,
+     totalA: 11, 
+     totalSelect :'A'
+     }
     this.onButtonClick = this.onButtonClick.bind(this);
     this.onChangeInput = this.onChangeInput.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClickDeleteLoad = this.onClickDeleteLoad.bind(this);
     this.resetAll = this.resetAll.bind(this);
+    this.onButtonClickTotal = this.onButtonClickTotal.bind(this);
+    this.setTotalA = this.setTotalA.bind(this);
+    this.setTotalW = this.setTotalW.bind(this);
+  }
+  /* update the total wattage load */
+  setTotalW(){
+   let sum = 0;
+   this.state.Data.map((option) =>
+   sum = sum + (option.Amount * option.Wattage)
+ )
+    this.setState({
+      totalW: sum
+    })
+  }
+  /* update the total current load */
+  setTotalA(){
+    let sum = 0;
+    this.state.Data.map((option) =>
+      sum = sum + (option.Amount * option.Current)
+    )
+    this.setState({
+      totalA: sum
+    })
+    
   }
  /* reset all the states to a default value. */
  resetAll() {
@@ -44,6 +80,8 @@ class Maxd extends Component {
       Data: currData
     })
     this.resetAll(); //resets the input values.
+    this.setTotalA();
+    this.setTotalW();
   }
   /* red dleete button next to load */
   onClickDeleteLoad(e){
@@ -181,6 +219,34 @@ class Maxd extends Component {
     }
     )
   }
+  renderTotalLoadButton(){
+    const options = ["A", "W"]
+    return options.map((op, key) => {
+      const buttonClass = this.state.totalSelect && this.state.totalSelect === op ? 'button-active' : 'button-inactive'
+      return (
+          <button id={op}  className ="totalLoad" className={buttonClass} key={key} value={op} onClick={this.onButtonClickTotal} > {op} </button>
+      )
+    }
+    )
+  }
+  renderTotal(){
+    if (this.state.totalSelect==='A'){
+      return (
+        <h2 className = "totalLoad">Total Load is {this.state.totalA }</h2>
+      )
+    } else {
+      return (
+        <h2 className = "totalLoad">Total Load is {this.state.totalW }</h2>
+      )
+    }
+  }
+  /* upon clicking the W or A, the load changes accordingly.*/ 
+  onButtonClickTotal(e){
+    e.preventDefault();
+    this.setState({
+      totalSelect: e.target.value
+    }, () => console.log(this.state.totalSelect))
+  }
   renderLoad() {
     return this.state.Data.map((load, key) => {
       return (
@@ -247,7 +313,6 @@ class Maxd extends Component {
             {this.renderDiversityButtons()}
           </div >
         </form>
-
         <div>
           <div className="container">
             <div className="cat-name grid">
@@ -260,9 +325,9 @@ class Maxd extends Component {
               <p> Diversity </p>
             </div>
               {this.renderLoad()}
-         
+              {this.renderTotal()}
+              {this.renderTotalLoadButton()}
           </div>
-
         </div>
         <button className="addLoad" onClick={this.onSubmit}> Add load</button>
       </div>

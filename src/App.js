@@ -8,7 +8,7 @@ class App extends Component {
       <div className="App">
   <div className="landing">
           <h1 className="title">Sukara</h1>
-          <p>Electrical Building Design Made Simple</p>
+          <p>Electrical building design made simple</p>
           <h1 className="landingQ"> Let's build something powerful together</h1>
           <div classname="buttonWrapper">
             <button className="landingButton"> Show me how</button>

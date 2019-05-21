@@ -75,8 +75,8 @@ button.button-delete-load:hover{
   box-shadow: 0px 5px 10px -5px #d1d8e0;
 }
 .button-inactive{
-  background-color: #ccc;
-  color:#4b6584;
+  background-color: rgba(204, 204, 204, 0.253);
+  color:#8999ad8a;
   border-color: none;
 }
 .landingButton{
@@ -115,6 +115,11 @@ h1.Pagetitle{
   color:unset;
   color: #15b15e;
   text-align: center;
+}
+h2.totalLoad {
+  margin: 0 ;
+  padding: 0 ;
+  display:inline-block;
 }
 
 .picker{
