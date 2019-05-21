@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './maxd.css'
-import { get } from 'http';
 import { getWattage, getCurrent } from './calcFunctions.js'
 
 class Maxd extends Component {
@@ -9,14 +7,14 @@ class Maxd extends Component {
     super(props);
     this.state = { Amount: 1,
        Name: "Item",
-        Voltage: 240,
-         Current: 15,
-          Wattage: 10,
+        Voltage: 240.0,
+         Current: 15.0,
+          Wattage: 10.0,
            select: "wattage",
-            Pf: 1,
-             Diversity: 1,
+            Pf: 1.0,
+             Diversity: 1.0,
               Data: [],
-               totalW: 1,
+               totalW: 1.0,
      totalA: 11, 
      totalSelect :'A'
      }
@@ -53,24 +51,41 @@ class Maxd extends Component {
  /* reset all the states to a default value. */
  resetAll() {
   this.setState({
-    Voltage: 240, 
-    Current: 1, 
+    Voltage: 240.0, 
+    Current: 1.0, 
     Amount: 1, 
-    Diversity: 1, 
-    Pf: 1, 
+    Diversity: 1.0, 
+    Pf: 1.0, 
     Name: "Load", 
-    Wattage: 240
+    Wattage: 240.0
   })
   } /* on submission of the form */
   onSubmit(e) {
     e.preventDefault();
+    /* work out the wattage or current. */
+    var wattage = 0;
+    var current = 0;
+    if(this.state.select === "current"){
+      wattage = getWattage(parseInt(this.state.Voltage), 
+      parseInt(this.state.Current),
+        parseInt(this.state.Diversity), 
+          parseInt(this.state.Pf) )
+      current = this.state.Current;
+    } else if (this.state.select === "wattage"){
+      current = getCurrent(parseInt(this.state.Voltage), 
+      parseInt(this.state.Wattage),
+        parseInt(this.state.Diversity), 
+          parseInt(this.state.Pf) )
+      wattage = this.state.Wattage;
+    }
+
     const dataNew = {
       "Amount": this.state.Amount,
       "Name": this.state.Name,
       "Voltage": this.state.Voltage,
-      "Current": this.state.Current,
+      "Current": current,
       "Pf": this.state.Pf,
-      "Wattage": this.state.Wattage,
+      "Wattage": wattage,
       "Diversity": this.state.Diversity
     };
    
@@ -136,11 +151,11 @@ class Maxd extends Component {
    */
   onButtonClick(e) {
     e.preventDefault();
+    console.log(e.target.id)
     /*if not null : an input box exists*/
     if (document.getElementById(e.target.id)) {
       document.getElementById(e.target.id).value = ""; /* wipe the input box */
     }
-    console.log(e.target.id)
     // var volts = this.state.Voltage;
     var id = e.target.id
     if (id === "voltage") {
@@ -169,9 +184,16 @@ class Maxd extends Component {
       }, () => console.log(this.state))
     }
     else if (id === "select") {
+      /* HARDCODED FIX FOR WATTAGE NAME & BUTTON RENDER ERROR */
+      if (e.target.value == "current")
       this.setState({
         select: e.target.value
-      }, () => console.log(this.state))
+      }, () => console.log("select changed " + this.state.select))
+      else {
+        this.setState({
+          select: "wattage"
+        }, () => console.log("select changed " + this.state.select))
+      }
     }
   }
   renderPowerFactorButtons() {
@@ -210,11 +232,11 @@ class Maxd extends Component {
   }
   /* renders the button select for wattage and current  */
   renderWandI() {
-    const options = ["wattage", "current"]
+    var options = ["wattage", "current"]
     return options.map((op, key) => {
       const buttonClass = this.state.select && this.state.select === op ? 'button-active currentWattage' : 'button-inactive currentWattage'
       return (
-          <button id="select" className={buttonClass} key={key} value={op} onClick={this.onButtonClick} > {op} </button>
+          <button value={op} id="select" className={buttonClass} key={key} onClick={this.onButtonClick} > {op} </button>
       )
     }
     )
@@ -224,7 +246,7 @@ class Maxd extends Component {
     return options.map((op, key) => {
       const buttonClass = this.state.totalSelect && this.state.totalSelect === op ? 'button-active' : 'button-inactive'
       return (
-          <button id={op}  className ="totalLoad" className={buttonClass} key={key} value={op} onClick={this.onButtonClickTotal} > {op} </button>
+          <button className ="totalLoad" className={buttonClass} key={key} value={op} onClick={this.onButtonClickTotal} > {op} </button>
       )
     }
     )
