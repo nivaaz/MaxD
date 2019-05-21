@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Maxd from './Maxd.js'
 import Notfound from './Notfound.js'
-
+import SignUp from './SignUp/SignUp.js'
 
 const routing = (
     <Router>
@@ -18,6 +18,7 @@ const routing = (
         <Switch>
           <Route exact path="/" component={App} />
           <Route path="/Maxd" component={Maxd} />
+          <Route path="/SignUp" component={SignUp} />
           <Route component={Notfound} />
         </Switch>
       </div>

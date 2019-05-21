@@ -25,7 +25,7 @@ h1, h2{
 .grid-span-two{
   grid-column: 1 / span 2;
 }
-.Maxd{
+form.MaxD{
     text-align: center;
     margin: 0 auto;
     min-height: 100vh;
