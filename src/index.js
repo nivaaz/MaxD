@@ -4,7 +4,7 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import App from "./App";
-import Maxd from "./MaxD";
+import MaxDemand from "./MaxDemand";
 import Notfound from "./NotFound";
 import SignUp from "./SignUp";
 
@@ -13,11 +13,11 @@ const routing = (
     <div>
       <div className="navbar">
         <Link to="/"> Home </Link>
-        <Link to="/Maxd">Maximum Demand</Link>
+        <Link to="/MaxDemand">Maximum Demand</Link>
       </div>
       <Switch>
         <Route exact path="/" component={App} />
-        <Route path="/Maxd" component={Maxd} />
+        <Route path="/MaxDemand" component={MaxDemand} />
         <Route path="/SignUp" component={SignUp} />
         <Route component={Notfound} />
       </Switch>

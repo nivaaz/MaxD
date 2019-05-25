@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./maxd.css";
+import "./maxdemand.css";
 import { getWattage, getCurrent } from "../utils/calcFunctions.js";
 
-class Maxd extends Component {
+class MaxDemand extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -416,4 +416,4 @@ class Maxd extends Component {
     );
   }
 }
-export default Maxd;
+export default MaxDemand;
