@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./maxd.css";
-import { getWattage, getCurrent } from "./calcFunctions.js";
+import { getWattage, getCurrent } from "../utils/calcFunctions.js";
 
 class Maxd extends Component {
   constructor(props) {
