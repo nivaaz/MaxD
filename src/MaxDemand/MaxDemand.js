@@ -3,24 +3,20 @@ import "./maxdemand.css";
 import { getWattage, getCurrent } from "../utils/calcFunctions.js";
 
 class MaxDemand extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loadRepetitions: 1,
-      name: "Item",
-      voltage: 240.0,
-      current: 15.0,
-      wattage: 10.0,
-      selectedOption: "wattage",
-      powerFactor: 1.0,
-      diversity: 1.0,
-      data: [],
-      totalW: 1.0,
-      totalA: 11,
-      totalLoad: "A"
-    };
-    this.onClickDeleteLoad = this.onClickDeleteLoad.bind(this);
-  }
+  state = {
+    loadRepetitions: 1,
+    name: "Item",
+    voltage: 240.0,
+    current: 15.0,
+    wattage: 10.0,
+    selectedOption: "wattage",
+    powerFactor: 1.0,
+    diversity: 1.0,
+    data: [],
+    totalW: 1.0,
+    totalA: 11,
+    totalLoad: "A"
+  };
 
   /* update the total wattage load */
   setTotalW = () => {
@@ -78,7 +74,7 @@ class MaxDemand extends Component {
       wattage = this.state.wattage;
     }
 
-    const dataNew = {
+    const newData = {
       loadRepetitions: this.state.loadRepetitions,
       name: this.state.name,
       voltage: this.state.voltage,
@@ -88,23 +84,28 @@ class MaxDemand extends Component {
       diversity: this.state.diversity
     };
 
-    const currData = this.state.data;
-    currData.push(dataNew);
     this.setState({
-      data: currData
+      data: [...this.state.data, newData]
     });
+
     this.resetAll(); //resets the input values.
     this.setTotalA();
     this.setTotalW();
   };
   /* red dleete button next to load */
-  onClickDeleteLoad(e) {
+  onClickDeleteLoad = e => {
     const currLoadData = this.state.data;
     currLoadData.splice(e.target.id, 1);
-    this.setState({
-      data: currLoadData
-    });
-  }
+    this.setState(
+      {
+        data: currLoadData
+      },
+      () => {
+        this.setTotalA();
+        this.setTotalW();
+      }
+    );
+  };
   /* on the change of custom input */
   onChangeInput = e => {
     var name = e.target.name;
@@ -118,8 +119,7 @@ class MaxDemand extends Component {
     );
   };
 
-  isSelectable = id =>
-    Boolean(id === "voltage" || id === "current" || id === "wattage");
+  isSelectable = id => Boolean(id === "current" || id === "wattage");
 
   clearInput = name => {
     var componentInputId = `${name}-input`;
@@ -149,7 +149,7 @@ class MaxDemand extends Component {
     );
   };
 
-  renderPowerFactorButtons() {
+  renderPowerFactorButtons = () => {
     const pf = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
     const buttons = pf.map((option, key) => {
       // console.log(this.state.powerFactor === option, this.state.powerFactor, option)
@@ -171,9 +171,9 @@ class MaxDemand extends Component {
       );
     });
     return <div>{buttons}</div>;
-  }
+  };
 
-  renderDiversityButtons() {
+  renderDiversityButtons = () => {
     const diversityOptions = [
       0,
       0.1,
@@ -207,9 +207,9 @@ class MaxDemand extends Component {
       );
     });
     return <div>{buttons}</div>;
-  }
+  };
 
-  renderVoltageButtons() {
+  renderVoltageButtons = () => {
     const voltageOptions = [230, 240, 400, 415];
     return voltageOptions.map((option, key) => {
       // console.log(this.state.voltage === option, this.state.voltage, option)
@@ -230,7 +230,7 @@ class MaxDemand extends Component {
         </button>
       );
     });
-  }
+  };
 
   toggleCurrentOrWattage = e => {
     e.preventDefault();
@@ -244,7 +244,7 @@ class MaxDemand extends Component {
   };
 
   /* renders the button select for wattage and current  */
-  renderCurrentOrWattage() {
+  renderCurrentOrWattage = () => {
     var options = ["current", "wattage"];
     return options.map((op, key) => {
       const buttonClass =
@@ -263,7 +263,17 @@ class MaxDemand extends Component {
         </button>
       );
     });
-  }
+  };
+
+  toggleTotalLoadOptions = e => {
+    e.preventDefault();
+    let newOption = this.state.totalLoad === "A" ? "W" : "A";
+
+    this.clearInput(this.state.totalLoad);
+    this.setState({
+      totalLoad: newOption
+    });
+  };
 
   renderTotalLoadButton() {
     const options = ["A", "W"];
@@ -275,7 +285,7 @@ class MaxDemand extends Component {
           className={"totalLoad " + buttonClass}
           key={key}
           value={op}
-          onClick={this.onButtonClick}
+          onClick={this.toggleTotalLoadOptions}
           id="totalLoad"
           name="totalLoad"
         >
@@ -284,23 +294,8 @@ class MaxDemand extends Component {
       );
     });
   }
-  renderTotal() {
-    if (this.state.totalSelect === "A") {
-      return <h2 className="totalLoad">Total Load is {this.state.totalA}</h2>;
-    } else {
-      return <h2 className="totalLoad">Total Load is {this.state.totalW}</h2>;
-    }
-  }
-  // /* upon clicking the W or A, the load changes accordingly.*/
-  // onButtonClickTotal(e) {
-  //   this.setState(
-  //     {
-  //       totalSelect: e.target.value
-  //     },
-  //     () => console.log(this.state.totalSelect)
-  //   );
-  // }
-  renderLoadList() {
+
+  renderLoadList = () => {
     return this.state.data.map((load, key) => {
       return (
         <div key={key} className="cat-data grid">
@@ -321,21 +316,8 @@ class MaxDemand extends Component {
         </div>
       );
     });
-  }
-  /* get the wattage from the input box */
-  // getWattageCurrent(e) {
-  //
-  //   console.log(e.target.value)
-  //   if (this.state.select === "wattage") {
-  //     this.setState({
-  //       select: e.target.value
-  //     }, () => console.log(this.state.Wattage))
-  //   } else if (this.state.select === "current") {
-  //     this.setState({
-  //       select: e.target.value
-  //     }, () => console.log(this.state.Current))
-  //   }
-  // }
+  };
+
   render() {
     return (
       <div className="grid grid-col-two">
@@ -405,7 +387,11 @@ class MaxDemand extends Component {
               <p> Diversity </p>
             </div>
             {this.renderLoadList()}
-            {this.renderTotal()}
+            {this.state.totalLoad === "A" ? (
+              <h2 className="totalLoad">Total Load is {this.state.totalA}</h2>
+            ) : (
+              <h2 className="totalLoad">Total Load is {this.state.totalW}</h2>
+            )}
             {this.renderTotalLoadButton()}
           </div>
         </div>
