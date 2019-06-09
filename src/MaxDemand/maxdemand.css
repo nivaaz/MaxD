@@ -1,3 +1,6 @@
+#root{
+  background-color: #2f3640;
+}
 *{
   color: #4b6584;
   font-family: 'Roboto', sans-serif;
@@ -10,9 +13,6 @@
 }
 .landing{
   min-height: 100vh;
-}
-h1, h2{
-  color: #26de81;
 }
 
 /*GRID */
@@ -59,9 +59,6 @@ button.currentWattage{
 }
 button.button-delete-load{
   margin: none;
-  font-size: 5pt;
-  margin: 0;
-  padding: 0;
   background-color: #fc5c65;
   color: white;
 }
@@ -112,6 +109,11 @@ button.pf{
   margin: 5px;
 }
 h1.Pagetitle{
+  padding: 0;
+  margin: 0;
+  margin-top: 50px;
+  font-family: 'Muli', sans-serif;
+text-transform: uppercase;  
   color:unset;
   color: #15b15e;
   text-align: center;
@@ -135,13 +137,30 @@ h2.totalLoad {
   width: 400px;
   text-align: center;
 }
-
+/*for the total loads container*/
+.container-load{
+  background-color: white;
+  margin: 1em;
+  padding: 1em;
+  min-width: 400px;
+  text-align: center;
+}
 .picker.title{
   color: #26de81;
 }
 
 h2.title{
   margin:0 auto;
-  padding-top: 10px;
   font-size: 15pt;
+  
+}
+
+p.load-title{
+  font-size:larger;
+  color: #20bf6b;
+}
+p.load-data{
+  font-size: larger;
+  color: #4b6584;
+  margin-top: 1em;
 }

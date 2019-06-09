@@ -105,16 +105,29 @@ class MaxDemand extends Component {
   /* red dleete button next to load */
   onClickDeleteLoad = e => {
     const currLoadData = this.state.data;
+    var wattage = 0.1;
+    var amps = 0.1;
+
     currLoadData.splice(e.target.id, 1);
     this.setState(
       {
         data: currLoadData
       },
       () => {
-        this.setTotalA();
-        this.setTotalW();
+        console.log("delete done")
       }
     );
+    
+    amps = this.setTotalA();
+    wattage = this.setTotalW();
+
+      this.setState({
+        totalA: amps, 
+        totalW: wattage
+      }, ()=>{
+       console.log("amps/wattage added")
+      })
+
   };
   /* on the change of custom input */
   onChangeInput = e => {
@@ -331,13 +344,13 @@ class MaxDemand extends Component {
     return this.state.data.map((load, key) => {
       return (
         <div key={key} className="cat-data grid">
-          <p> {load.loadRepetitions} </p>
-          <p> {load.name} </p>
-          <p> {load.voltage} </p>
-          <p> {load.wattage} </p>
-          <p> {load.current} </p>
-          <p> {load.powerFactor} </p>
-          <p> {load.diversity} </p>
+          <p className = "load-data"> {load.loadRepetitions} </p>
+          <p className = "load-data"> {load.name} </p>
+          <p className = "load-data"> {load.voltage} </p>
+          <p className = "load-data"> {load.wattage} </p>
+          <p className = "load-data"> {load.current} </p>
+          <p className = "load-data"> {load.powerFactor} </p>
+          <p className = "load-data"> {load.diversity} </p>
           <button
             id={key}
             onClick={this.onClickDeleteLoad}
@@ -390,7 +403,7 @@ class MaxDemand extends Component {
           </div>
 
           <div className="container WI">
-            <h2 className="WI">Add a {this.state.selectedOption}</h2>
+            <h2 className="WI picker title">Add a {this.state.selectedOption}</h2>
             <div className="holder-WI">{this.renderCurrentOrWattage()}</div>
             <input
               defaultValue="10"
@@ -410,15 +423,15 @@ class MaxDemand extends Component {
           </div>
         </form>
         <div className="MaxD">
-          <div className="container">
+          <div className="container-load">
             <div className="cat-name grid">
-              <p> Amount </p>
-              <p> Name </p>
-              <p> Voltage </p>
-              <p> Wattage </p>
-              <p> Current </p>
-              <p> Power Factor </p>
-              <p> Diversity </p>
+              <p class ="load-title"> Amount </p>
+              <p class ="load-title"> Name </p>
+              <p class ="load-title"> Voltage </p>
+              <p class ="load-title"> Wattage </p>
+              <p class ="load-title"> Current </p>
+              <p class ="load-title"> Power Factor </p>
+              <p class ="load-title"> Diversity </p>
             </div>
             {this.renderLoadList()}
            {this.renderTotalLoad()}

@@ -7,16 +7,9 @@ class Notfound extends Component {
         <div className="notfound">
         <div>
         <i className="fas fa-lightbulb"></i>
-        <div className="holder">
-        <div className="socket">
-          <div className="sock L"></div>
-          <div className="sock R"></div>
-        </div>
-         <div>
-          <p className = "plug"><i className="fas fa-plug"></i></p>
-        </div>
-        </div>
-        <h1> Looks like we couldn't make a conection there.</h1>
+        <h2> Oops, looks like we haven't connect this page to power yet.</h2>
+        <h2> Click Home, to navigate back.</h2>
+
         </div>
 
           </div>
