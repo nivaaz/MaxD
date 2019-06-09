@@ -22,7 +22,7 @@ class SignUp extends Component {
         console.log("calling database...")
     }
     renderEmailButton = () => {
-        if(this.state.email.length === 0){
+        if (this.state.email.length === 0) {
             return (
                 <div>
                     <input
@@ -40,12 +40,16 @@ class SignUp extends Component {
                 <h3 > Thanks! We'll be in touch soon. </h3>
             )
         }
-       
+
     }
     render() {
         return (
             <div className="launchDiv">
-                <h1 > Name</h1>
+                <div >
+                    <h1 className="sukara">Sukara</h1>
+                    <h1 className="engineering">Engineering</h1>
+                    <h1 className="landingQ"> Let's build something powerful together</h1>
+                </div>
                 <h3> Let's design something powerful together. </h3>
                 <p className="launchText">We're doing super cool things, and we think you would like it too. </p>
                 <p className="launchText">It's going to be easy to use, simple and automated!</p>

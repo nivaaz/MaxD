@@ -77,23 +77,26 @@ footer{
     font-family: 'Nunito', sans-serif;
   }
   
-  h1{
-    color: #8854d0;
-    padding: 2em;
+  h1.sukara{
+    padding-top: 1em;
+    font-size: 100pt;
+    font-family: 'Muli', sans-serif;
+  color:white;
   }
-  h1.name{
-    font-size: 50pt;
-    padding:1em;
+  h1.engineering{
+    font-family: 'Muli', sans-serif;
+    color: #7d00ff;
+    text-transform: uppercase;
   }
   h2{
-    color:#4b6584;
+  color: white;
   }
   h3.launch{
     margin-top: 2em;
     font-size: 20pt;
   }
   h4.cool{
-    color: #4b6584;
+    color:white;
     margin-top: 3em;
   }
   h4.cool:hover{

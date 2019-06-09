@@ -7,8 +7,10 @@
     font-size: 200pt;
     padding: none;
     margin: 70px;
+    color: black;
 }
 i{
+    color: white;
     padding: none;
     margin: none;
 }
@@ -17,3 +19,6 @@ i{
     grid-template-columns: 1fr 1fr;
     text-align: center;
     }
+h2.nf{
+    color: #d1d8e0;
+}

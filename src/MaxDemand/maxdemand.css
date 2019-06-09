@@ -42,14 +42,15 @@ button{
   margin: 10px;
   padding:10px;
   border: none;
-  font-size: 15pt;
+  font-size: 13pt;
   border-radius: 2em;
   font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+
 }
 button.addLoad{
-  color: blue;
-  background-color: white;
-  border: 2px solid blue;
+  color: #8200ff;
+  background-color: white;  
   width: 200px;
   margin: 0 auto;
   margin-bottom: 50px;

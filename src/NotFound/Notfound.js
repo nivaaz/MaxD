@@ -7,9 +7,8 @@ class Notfound extends Component {
         <div className="notfound">
         <div>
         <i className="fas fa-lightbulb"></i>
-        <h2> Oops, looks like we haven't connect this page to power yet.</h2>
-        <h2> Click Home, to navigate back.</h2>
-
+        <h2 className="nf"> Oops, looks like we haven't connected this page to power yet.</h2>
+        <h2 className="nf"> Click Home, to navigate back.</h2>
         </div>
 
           </div>
