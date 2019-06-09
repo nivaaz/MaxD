@@ -2,12 +2,26 @@ import React, { Component } from "react";
 import "./App.css";
 
 class App extends Component {
+  async apiCall() {
+    const response = await fetch("api/hello");
+    const message = await response.json();
+
+    console.log(message);
+  }
+
   render() {
+    this.apiCall();
     return (
       <div className="App">
+<<<<<<< HEAD:src/App/App.js
         <div >
           <h1 className ="sukara">Sukara</h1>
           <h1 className ="engineering">Engineering</h1>
+=======
+        <div>
+          <h1>Sukara Engineering</h1>
+          <p>Electrical building design made simple</p>
+>>>>>>> 717c70ffc7e7885eace91dce6dd2abc62e5330fe:client/src/App/App.js
           <h1 className="landingQ"> Let's build something powerful together</h1>
         </div>
 

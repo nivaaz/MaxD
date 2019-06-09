@@ -5,7 +5,7 @@ import * as serviceWorker from "./serviceWorker";
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import App from "./App";
 import MaxDemand from "./MaxDemand";
-import Notfound from "./NotFound";
+// import Notfound from "./NotFound";
 import SignUp from "./SignUp";
 
 const routing = (
@@ -21,7 +21,6 @@ const routing = (
         <Route exact path="/" component={App} />
         <Route path="/MaxDemand" component={MaxDemand} />
         <Route path="/SignUp" component={SignUp} />
-        <Route component={Notfound} />
       </Switch>
     </div>
   </Router>
