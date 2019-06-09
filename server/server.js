@@ -11,18 +11,12 @@ const router = express.Router();
 const staticFiles = express.static(path.join(__dirname, "../../client/build"));
 app.use(staticFiles);
 
-router.get("/", (req, res) => res.send("Sukara Backend!"));
-
 // Example API call - To remove
-router.get("/hello", (req, res) => {
-  const param = req.query.q;
-  if (param) {
-    res.json({
-      name: param
-    });
-    return;
-  }
-});
+router.get("/api/hello", (req, res) =>
+  res.json({
+    name: "sukara"
+  })
+);
 
 app.use(router);
 

@@ -2,10 +2,18 @@ import React, { Component } from "react";
 import "./App.css";
 
 class App extends Component {
+  async apiCall() {
+    const response = await fetch("api/hello");
+    const message = await response.json();
+
+    console.log(message);
+  }
+
   render() {
+    this.apiCall();
     return (
       <div className="App">
-        <div >
+        <div>
           <h1>Sukara Engineering</h1>
           <p>Electrical building design made simple</p>
           <h1 className="landingQ"> Let's build something powerful together</h1>
