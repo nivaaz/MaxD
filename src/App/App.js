@@ -5,13 +5,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="landing">
-          <h1 className="title">Sukara</h1>
+        <div >
+          <h1>Sukara Engineering</h1>
           <p>Electrical building design made simple</p>
           <h1 className="landingQ"> Let's build something powerful together</h1>
-          <div classname="buttonWrapper">
-            <button className="landingButton"> Show me how</button>
-          </div>
         </div>
 
         <div className="pageContainer">

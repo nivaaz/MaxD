@@ -17,9 +17,6 @@ i{
     padding: none;
     margin: none;
 }
-.fas.fa-plug{
-    color: red;
-}
 .holder{
     display:grid;
     grid-template-columns: 1fr 1fr;

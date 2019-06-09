@@ -13,7 +13,7 @@ export function getCurrent(voltage, wattage, diversity, pf) {
     c = c / pf;
     console.log(c.toFixed(2));
   }
-  return c.toFixed(3);
+  return c.toFixed(2);
 }
 
 export function getWattage(voltage, current, diversity, pf) {
@@ -30,7 +30,7 @@ export function getWattage(voltage, current, diversity, pf) {
     w = w * pf;
     console.log(w.toFixed(2));
   }
-  return w.toFixed(3);
+  return w.toFixed(2);
 }
 
 /* CHECK DATA FUNCTIONS */

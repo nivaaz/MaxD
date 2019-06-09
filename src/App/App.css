@@ -12,11 +12,10 @@ https://flatuicolors.com/palette/de
   text-align: center;
   margin:0 auto;
   background-color: #000f1d;
-  background-image: linear-gradient(0deg, #000f1d 0%, #131313 100%);
+  background-image: linear-gradient(0deg, #130425 0%, #0a0116 100%);
 }
-
-h1, h2, h3, h4{
-  color: grey;
+h1, h2, h3, h4, p{
+  color: rgb(170, 170, 170);
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
 }
@@ -25,12 +24,8 @@ h1.landingQ{
   padding: 100px;
   font-size: 20pt;
 }
-h1.title{
-  margin: 0 auto;
-  padding-top: 30vh;
-  font-size: 50pt;
-  color: unset;
-  color: #a55eea;
+h1{
+  color: white;
 }
 button.landingButton{
   padding:30px;
@@ -65,25 +60,23 @@ button.landingButton{
   }
 }
 .page{
-  height: 50vh;
-  background-color: white;
-  border-radius: 2em;
-  margin: 10px;
+  min-height: 50vh;
+  background-color: rgb(252, 249, 255);
+  margin: 5px;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  box-shadow: 0px 0px 50px 10px rgba(202, 202, 202, 0.24);
 }
 .title.sldg{
-  color: #20bf6b;
+  color: #0bac3b;
   }
   .title.pv{
-    color:#0fb9b1;
+    color:rgb(0, 145, 230);
   }
   .title.mdc{
-    color:#8854d0;
+    color: rgb(147, 12, 209);
   }
   .title.ai{
-    color: #fa8231;
+    color: rgb(255, 208, 0);
   }
   .sldg, .ai, .mdc, .pv{
     font-size: unset;
@@ -108,4 +101,18 @@ button.landingButton{
 .info{
   color: #4b6584;
   padding: 20px;
+}
+
+/*icons */
+.fas.fa-solar-panel{
+  color: rgb(0, 145, 230);
+}
+.fas.fa-plug{
+  color: #0bac3b;
+}
+.fas.fa-calculator{
+  color: rgb(147, 12, 209); 
+}
+.far.fa-lightbulb{
+  color: rgb(255, 208, 0);
 }

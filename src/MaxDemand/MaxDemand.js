@@ -13,30 +13,29 @@ class MaxDemand extends Component {
     powerFactor: 1.0,
     diversity: 1.0,
     data: [],
-    totalW: 1.0,
-    totalA: 11,
+    totalW: 1.00,
+    totalA: 1.00,
     totalLoad: "A"
   };
 
   /* update the total wattage load */
   setTotalW = () => {
-    let sum = 0;
+    var sum = 0.0;
+    console.log("wattage is currently " + this.state.wattage)
+    console.log("TOTAL W is currently " + this.state.totalW)
+
     this.state.data.map(
-      option => (sum = sum + option.loadRepetitions * option.wattage)
-    );
-    this.setState({
-      totalW: sum
-    });
+        option => (sum = sum + (option.loadRepetitions * option.wattage))
+      );
+      return sum;
   };
   /* update the total current load */
   setTotalA = () => {
     let sum = 0;
     this.state.data.map(
-      option => (sum = sum + option.loadRepetitions * option.current)
+      option => (sum = sum + (option.loadRepetitions * option.current))
     );
-    this.setState({
-      totalA: sum
-    });
+    return sum;
   };
   /* reset all the states to a default value. */
   resetAll = () => {
@@ -86,12 +85,23 @@ class MaxDemand extends Component {
 
     this.setState({
       data: [...this.state.data, newData]
-    });
+    }, () => this.setTotals());
+
+    
 
     this.resetAll(); //resets the input values.
-    this.setTotalA();
-    this.setTotalW();
   };
+
+  setTotals = () => {
+    var totalA = this.setTotalA();
+    var totalW = this.setTotalW();
+    
+    console.log("totals are: ", totalA, totalW)
+    this.setState({
+      totalA: totalA,
+      totalW: totalW
+    });
+  }
   /* red dleete button next to load */
   onClickDeleteLoad = e => {
     const currLoadData = this.state.data;
@@ -110,7 +120,8 @@ class MaxDemand extends Component {
   onChangeInput = e => {
     var name = e.target.name;
     var value = name === "name" ? e.target.value : parseFloat(e.target.value);
-
+    console.log (e.target.name)
+    console.log(e.target.value)
     this.setState(
       {
         [name]: value
@@ -150,7 +161,7 @@ class MaxDemand extends Component {
   };
 
   renderPowerFactorButtons = () => {
-    const pf = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
+    const pf = [ 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
     const buttons = pf.map((option, key) => {
       // console.log(this.state.powerFactor === option, this.state.powerFactor, option)
       const buttonClass =
@@ -276,7 +287,11 @@ class MaxDemand extends Component {
   };
 
   renderTotalLoadButton() {
+
     const options = ["A", "W"];
+    if (this.state.data.length === 0){
+      return <h3> Added loads will show here </h3>;
+    }else{
     return options.map((op, key) => {
       const buttonClass =
         this.state.totalLoad === op ? "button-active" : "button-inactive";
@@ -294,8 +309,25 @@ class MaxDemand extends Component {
       );
     });
   }
-
+  }
+  renderTotalLoad = () => {
+    if (this.state.data.length === 0){
+      return null;
+    } else {
+      if(this.state.totalLoad === "A"){
+        return (
+          <h2 className="totalLoad">Total Load is {this.state.totalA}</h2>
+        )
+      } else if(this.state.totalLoad === "W"){
+        return (
+          <h2 className="totalLoad">Total Load is {this.state.totalW}</h2>
+        )
+      }   
+  }
+}
+  
   renderLoadList = () => {
+    
     return this.state.data.map((load, key) => {
       return (
         <div key={key} className="cat-data grid">
@@ -316,6 +348,7 @@ class MaxDemand extends Component {
         </div>
       );
     });
+  
   };
 
   render() {
@@ -324,7 +357,7 @@ class MaxDemand extends Component {
         <h1 className="Pagetitle grid-span-two">Maximum Demand</h1>
         <form className="MaxD">
           <div className="container">
-            <h2 className="picker title"> Name your load</h2>
+            <h2 className="picker title">Name your load</h2>
             <input
               value={this.state.name}
               type="text"
@@ -334,16 +367,17 @@ class MaxDemand extends Component {
             />
           </div>
           <div className="container">
-            <h2 className="picker title"> How many repitions of this load?</h2>
+            <h2 className="picker title">How many repitions of this load?</h2>
             <input
               defaultValue={this.state.loadRepetitions}
               type="number"
               onChange={this.onChangeInput}
               id="loadRepetitions"
+              name="loadRepetitions"
             />
           </div>
           <div className="container">
-            <h2 className="picker title"> Pick a Voltage</h2>
+            <h2 className="picker title">Pick a Voltage</h2>
             <div className="voltage">
               {this.renderVoltageButtons()}
               <input
@@ -387,11 +421,7 @@ class MaxDemand extends Component {
               <p> Diversity </p>
             </div>
             {this.renderLoadList()}
-            {this.state.totalLoad === "A" ? (
-              <h2 className="totalLoad">Total Load is {this.state.totalA}</h2>
-            ) : (
-              <h2 className="totalLoad">Total Load is {this.state.totalW}</h2>
-            )}
+           {this.renderTotalLoad()}
             {this.renderTotalLoadButton()}
           </div>
         </div>
