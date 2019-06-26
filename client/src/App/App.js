@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
+import Building from '../images/Building.svg'
+import SukaraWhite from '../images/sukara-logo-white.svg'
+import CableLady from '../images/cable-lady.svg'
 
 class App extends Component {
   async apiCall() {
@@ -12,61 +15,26 @@ class App extends Component {
   render() {
     this.apiCall();
     return (
-      <div className="App">
-        <div >
-          <h1 className ="sukara">Sukara</h1>
-          <h1 className ="engineering">Engineering</h1>
-          <h1 className="landingQ"> Let's build something powerful together</h1>
-        </div>
+      <div className="App">        
+        <div className ="grid-two" >
 
-        <div className="pageContainer">
-          <div className="page">
-            <h2 className="title sldg"> Single Line Diagrams</h2>
-            <p>
-              <i className="fas fa-plug" />
-            </p>
-            <p className="info">
-              {" "}
-              Add in circuit breaker, poles and names for your DB and we'll draw
-              it for you. Then export it to a pdf or send it right away!
-            </p>
+        <div className = "center-landing">
+       <h1 className="sukara"> Sukara </h1>
+          <h1 className ="engineering">Engineering</h1>
+          <h1 className="landingQ"> Let's design something powerful together</h1>
+          
+          <div className="emailHolder">
+            <h1>Want to be the first to know when we launch?</h1>
+            <input/> 
+            <button className="landingButton"> Sign me up</button>
+            </div>
+          
           </div>
-          <div className="page">
-            <h2 className="title pv"> Photovoltaics</h2>
-            <p>
-              {" "}
-              <i className="fas fa-solar-panel" />
-            </p>
-            <p className="info">
-              {" "}
-              We'll help you decide if installing solar pannels is a good idea,
-              without any hard maths.
-            </p>
-          </div>
-          <div className="page">
-            <h2 className="title mdc">Maximum Demand</h2>
-            <p>
-              {" "}
-              <i className="fas fa-calculator" />
-            </p>
-            <p className="info">
-              {" "}
-              Beautiful and simple Maximum demand calculation, because it
-              shouldn't be tedious and ugly.
-            </p>
-          </div>
-          <div className="page">
-            <h2 className="title ai">Lighting</h2>
-            <p>
-              {" "}
-              <i className="far fa-lightbulb" />
-            </p>
-            <p className="info">
-              {" "}
-              Automatic lighting design. Tell us the dimensions of your room,
-              the size and we'll do the work for you.
-            </p>
-          </div>
+        
+        <div className = "center-landing-img">
+        <img src={Building} />
+        <img className = "cableLady" src={CableLady} />
+        </div>
         </div>
       </div>
     );

@@ -13,16 +13,16 @@ https://flatuicolors.com/palette/de
   background-color: white;
 }
 h1, h2, h3, h4, p{
-  color: rgb(170, 170, 170);
+  color: whitesmoke;
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
+  font-size: large;
 }
 h1.sukara, h1.engineering{
   padding: 0;
-  margin: 0;
+  margin: y0;
 }
 h1.sukara{
-  padding-top: 1em;
   font-size: 100pt;
   font-family: 'Muli', sans-serif;
 color:white;
@@ -33,12 +33,9 @@ h1.engineering{
   text-transform: uppercase;
 }
 button.landingButton{
-  padding:30px;
-  border: none;
   font-size: 15pt;
   color: white; 
-  border-radius: 2em;
-  background-color: #a55eea;
+  background-color: #7d00ff;
   font-family: 'Roboto', sans-serif;
 }
 .App-header {
@@ -101,6 +98,25 @@ background-image: linear-gradient(19deg, #390090 0%,#8200ff  100%);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     padding-bottom: 100px;
+    text-align: center;
+  }
+  .emailHolder{
+    padding-top: 15vh;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .grid-two{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .center-landing{
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 20vh;
+  }
+.center-landing-img{
+    text-align: right;
+    padding-top: 10vh;
   }
 /*icons */
 .fas.fa-solar-panel{
@@ -114,4 +130,12 @@ background-image: linear-gradient(19deg, #390090 0%,#8200ff  100%);
 }
 .far.fa-lightbulb{
   color: white;
+}
+/*images*/
+img.logo{
+  scale: (5);
+}
+img.cableLady{
+  padding-bottom: 200px;
+  text-align: right;
 }

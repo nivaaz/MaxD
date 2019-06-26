@@ -8,7 +8,7 @@
 }
 .App{
   color: grey;
-  background-color: black;
+  background: radial-gradient(1642.08px at 151.22% 51.4%, #E377EF 0%, #0A0E47 71.19%, #070A2F 100%);
   min-height: 100vh;
 }
 .landing{
@@ -46,7 +46,11 @@ button{
   border-radius: 2em;
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
-
+}
+button.signUp{
+  color: white;
+  background-color: #8200ff;  
+  width: 200px;
 }
 button.addLoad{
   color: #8200ff;
@@ -79,7 +83,6 @@ button.button-delete-load:hover{
 }
 .landingButton{
   background-color: black;
-  box-shadow: 0px 0px 5px yellowgreen;
   padding: 10px;
 }
 /*INPUTS*/
