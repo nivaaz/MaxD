@@ -1,14 +1,13 @@
-import bodyParser from "body-parser";
 import express from "express";
 import path from "path";
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 const router = express.Router();
 
-const staticFiles = express.static(path.join(__dirname, "../../client/build"));
+const staticFiles = express.static(path.join(__dirname, "../../frontend/build"));
 app.use(staticFiles);
 
 // Example API call - To remove
