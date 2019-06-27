@@ -1,0 +1,22 @@
+{
+  "name": "sukara-backend",
+  "version": "0.1.0",
+  "main": "server.js",
+  "repository": {},
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "build": "babel . --ignore node_modules,build --out-dir build",
+    "start": "nodemon --exec babel-node server.js",
+    "start:prod": "node build/server.js"
+  }
+}
