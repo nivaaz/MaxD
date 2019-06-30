@@ -7,6 +7,7 @@ import App from "./App";
 import MaxDemand from "./MaxDemand";
 import Notfound from "./NotFound";
 import SignUp from "./SignUp";
+import SingleLineDiagram from "./SingleLineDiagram";
 
 const routing = (
   <Router>
@@ -19,6 +20,7 @@ const routing = (
         <Route exact path="/" component={App} />
         <Route path="/MaxDemand" component={MaxDemand} />
         <Route path="/SignUp" component={SignUp} />
+        <Route path="/SingleLineDiagram" component={SingleLineDiagram} />
         <Route component={Notfound} />
       </Switch>
     </div>

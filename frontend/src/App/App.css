@@ -20,12 +20,12 @@ h1, h2, h3, h4, p{
 }
 h1.sukara, h1.engineering{
   padding: 0;
-  margin: y0;
+  margin: 0;
 }
 h1.sukara{
   font-size: 100pt;
   font-family: 'Muli', sans-serif;
-color:white;
+  color:white;
 }
 h1.engineering{
   font-family: 'Muli', sans-serif;

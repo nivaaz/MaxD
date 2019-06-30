@@ -1,0 +1,12 @@
+h1.SLD, h2.SLD, h3.SLD, h4.SLD{
+    color: #3179ff;
+    
+} 
+div.container.SLD{
+    border-radius: 1em;
+}
+
+/*SLIDER*/
+span.MuiSlider-rail{
+    width: unset;
+}
