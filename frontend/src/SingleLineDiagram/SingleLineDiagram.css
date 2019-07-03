@@ -7,6 +7,11 @@ div.container.SLD{
 }
 
 /*SLIDER*/
-span.MuiSlider-rail{
-    width: unset;
+span.MuiSlider-track{
+    width: 200px;
+}
+.slider-holder{
+    text-align: center;
+    margin: 0 auto;
+    width: 200px;
 }

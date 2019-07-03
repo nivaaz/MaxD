@@ -329,11 +329,11 @@ class MaxDemand extends Component {
     } else {
       if(this.state.totalLoad === "A"){
         return (
-          <h2 className="totalLoad">Total Load is {this.state.totalA}</h2>
+          <h2 className="totalLoad MD">Total Load is {this.state.totalA}</h2>
         )
       } else if(this.state.totalLoad === "W"){
         return (
-          <h2 className="totalLoad">Total Load is {this.state.totalW}</h2>
+          <h2 className="totalLoad MD">Total Load is {this.state.totalW}</h2>
         )
       }   
   }
@@ -367,7 +367,9 @@ class MaxDemand extends Component {
   render() {
     return (
       <div className="grid grid-col-two">
-        <h1 className="Pagetitle grid-span-two">Maximum Demand</h1>
+        <h1 className="MD Pagetitle grid-span-two">Maximum Demand</h1>
+        <p className="grid-span-two">A dynamic maximum demand calculator for electrical loads.</p>
+
         <form className="MaxD">
           <div className="container">
             <h2 className="picker title">Name your load</h2>

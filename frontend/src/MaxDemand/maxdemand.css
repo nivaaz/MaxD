@@ -1,5 +1,5 @@
 #root{
-  background-color: #2f3640;
+background-color: #2d2d2d;
 }
 *{
   color: #4b6584;
@@ -53,8 +53,8 @@ button.signUp{
   width: 200px;
 }
 button.addLoad{
-  color: #8200ff;
-  background-color: white;  
+  color: white;
+  background-color: #20bf6b;  
   width: 200px;
   margin: 0 auto;
   margin-bottom: 50px;
@@ -73,7 +73,7 @@ button.button-delete-load:hover{
 .button-active{
   background-color: white;
   color:#20bf6b;
-  border: 2px solid #26de81;
+  border: 2px solid #20bf6b;
   box-shadow: 0px 5px 10px -5px #d1d8e0;
 }
 .button-inactive{
@@ -102,10 +102,10 @@ input#voltage, input#WI{
   color: darkslategray;
 }
 input:focus{
-  border-bottom-color: #26de81;
+  border-bottom-color: #20bf6b;
 }
 button:hover{
-  box-shadow: 0px 0px 5px #26de81;
+  box-shadow: 0px 0px 5px #20bf6b;
   color: black; 
 }
 button.pf{
@@ -116,17 +116,23 @@ h1.Pagetitle{
   padding: 0;
   margin: 0;
   font-family: 'Muli', sans-serif;
-text-transform: uppercase;  
+  text-transform: uppercase;  
   color:unset;
-  color: #15b15e;
+  font-size: 30pt;
+  color: white;
   text-align: center;
 }
-h2.totalLoad {
+h2.totalLoad.MD{
+  color: unset;
   margin: 0 ;
   padding: 0 ;
   display:inline-block;
+  font-size: x-large;
+  color: #20bf6b;
 }
-
+h3{
+  color: grey;
+}
 .picker{
   color:white;
   font-family: 'Roboto', sans-serif;
@@ -139,6 +145,7 @@ h2.totalLoad {
   padding: 1em;
   width: 400px;
   text-align: center;
+  border-radius: 1em;
 }
 /*for the total loads container*/
 .container-load{
@@ -147,15 +154,20 @@ h2.totalLoad {
   padding: 1em;
   min-width: 400px;
   text-align: center;
+  border-radius: 1em;
 }
 .picker.title{
-  color: #26de81;
+  color: #20bf6b;
 }
 
 h2.title{
   margin:0 auto;
   font-size: 15pt;
-  
+}
+h1.MD.Pagetitle.grid-span-two{
+  padding: unset;
+  padding-top: 50px;
+  padding-bottom: 10px;
 }
 
 p.load-title{

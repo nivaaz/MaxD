@@ -25,11 +25,14 @@ class SingleLineDiagram extends Component {
          </div>
          <div>
              <h3 className="SLD">Most cb are </h3>
-             <Slider
-             marks={true}
-             valueLabelDisplay="on"
-             
-             />
+             <div className="slider-holder">
+                <Slider
+                marks={true}
+                valueLabelDisplay="on"
+                max = "800"
+                step = "10"
+                />
+             </div>
              <input/>
          </div>   
         </div>
