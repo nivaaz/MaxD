@@ -356,8 +356,7 @@ class MaxDemand extends Component {
             onClick={this.onClickDeleteLoad}
             className="button-delete-load"
           >
-            X
-          </button>
+X          </button>
         </div>
       );
     });
@@ -371,7 +370,7 @@ class MaxDemand extends Component {
         <p className="grid-span-two">A dynamic maximum demand calculator for electrical loads.</p>
 
         <form className="MaxD">
-          <div className="container">
+          <div className="container-white">
             <h2 className="picker title">Name your load</h2>
             <input
               value={this.state.name}
@@ -381,7 +380,7 @@ class MaxDemand extends Component {
               name="name"
             />
           </div>
-          <div className="container">
+          <div className="container-white">
             <h2 className="picker title">How many repitions of this load?</h2>
             <input
               defaultValue={this.state.loadRepetitions}
@@ -391,7 +390,7 @@ class MaxDemand extends Component {
               name="loadRepetitions"
             />
           </div>
-          <div className="container">
+          <div className="container-white">
             <h2 className="picker title">Pick a Voltage</h2>
             <div className="voltage">
               {this.renderVoltageButtons()}
@@ -404,8 +403,8 @@ class MaxDemand extends Component {
             </div>
           </div>
 
-          <div className="container WI">
-            <h2 className="WI picker title">Add a {this.state.selectedOption}</h2>
+          <div className="container-white WI">
+            <h2 className="WI picker title">Add a </h2>
             <div className="holder-WI">{this.renderCurrentOrWattage()}</div>
             <input
               defaultValue="10"
@@ -415,17 +414,17 @@ class MaxDemand extends Component {
               name={this.state.selectedOption}
             />
           </div>
-          <div className="container">
+          <div className="container-white">
             <h2 className="picker title"> Add a power factor</h2>
             {this.renderPowerFactorButtons()}
           </div>
-          <div className="container">
+          <div className="container-white">
             <h2 className="picker title"> Add a diversity</h2>
             {this.renderDiversityButtons()}
           </div>
         </form>
         <div className="MaxD">
-          <div className="container-load">
+          <div className="container-white-load">
             <div className="cat-name grid">
               <p class ="load-title"> Amount </p>
               <p class ="load-title"> Name </p>

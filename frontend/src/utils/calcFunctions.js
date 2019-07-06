@@ -51,3 +51,11 @@ export function checkAll(voltage, current, diversity, pf) {
   }
   return errors;
 }
+
+export function range (start, end){
+  const a = [];
+  for (var i=start; i<(end-start); i++){
+    a.push(i)
+  }
+  return a
+}

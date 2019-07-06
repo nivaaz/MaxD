@@ -1,17 +1,59 @@
-h1.SLD, h2.SLD, h3.SLD, h4.SLD{
-    color: #3179ff;
-    
+h1.SLD{
+  color: white;
+  text-align: center;
+}
+h2.SLD, h3.SLD, h4.SLD{
+    color: #8200ff;
 } 
-div.container.SLD{
-    border-radius: 1em;
+div.container-white.SLD{
+    border-radius: 1em;   
 }
-
 /*SLIDER*/
-span.MuiSlider-track{
-    width: 200px;
-}
 .slider-holder{
+    width: 200px;
+    margin: 0 auto;
+    text-align: left;
+}
+/*LINE FOR THE SLD*/
+div.vertline, div.horizline{
+    border-radius: 4em;
+}
+div.vertline{
+    margin:0;
+    padding:0;
+    height: 50px;
+    border-left: 5px solid #8200ff;
+    margin-left: 200px;
+    position: absolute;
+}
+div.horizLine{
+    width: 100px;
+    margin: 0 auto;
+    border-bottom: 5px solid #8200ff;
+    padding: 1em;
+}
+.breaker{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
     margin: 0 auto;
-    width: 200px;
+}
+p.breakerSize{
+    padding-top: 2em;
+    color: #8200ff;
+}
+
+/*BUTTOMS FOR SLD*/
+button.SLD.active{
+    background: #8200ff;
+    color: white;
+}
+button.SLD.inactive{
+    color: #aaa;
+    background: #eee;
+}
+button.SLD.button{
+    background: white;
+    color: #8200ff;
+    border:2px solid #8200ff;
 }

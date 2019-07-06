@@ -17,12 +17,14 @@ i{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   list-style: none;
+  position: absolute;
+  width: 100vw;
 }
 li{
   list-style: none;
 }
 a{
-  color: #9c88ff;
+  color: #eee;
   text-decoration: none;
 }
 .navbar{

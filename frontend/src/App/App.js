@@ -17,7 +17,6 @@ class App extends Component {
     return (
       <div className="App">        
         <div className ="grid-two" >
-
         <div className = "center-landing">
        <h1 className="sukara"> Sukara </h1>
           <h1 className ="engineering">Engineering</h1>

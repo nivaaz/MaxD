@@ -84,7 +84,7 @@ background-image: linear-gradient(19deg, #390090 0%,#8200ff  100%);
   color: white;
 
   }
-  .pageContainer{
+  .pagecontainer-white{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     padding-bottom: 100px;
