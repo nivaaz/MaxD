@@ -87,8 +87,6 @@ class MaxDemand extends Component {
       data: [...this.state.data, newData]
     }, () => this.setTotals());
 
-    
-
     this.resetAll(); //resets the input values.
   };
 

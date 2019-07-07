@@ -3,6 +3,11 @@ import "./SingleLineDiagram.css";
 import Slider from '@material-ui/lab/Slider';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { range } from "../utils/calcFunctions.js";
+import Line from '../images/Line.svg'
+import SinglePhaseCBL from '../images/SinglePhaseCBL.svg'
+import SinglePhaseCBR from '../images/SinglePhaseCBL.svg'
+import ThreePhaseCBR from '../images/SinglePhaseCBL.svg'
+import ThreePhaseCBL from '../images/SinglePhaseCBL.svg'
 
 const currentColor = "#8200ff";
 const PrettoSlider = withStyles({
@@ -37,44 +42,13 @@ const PrettoSlider = withStyles({
 
 class SingleLineDiagram extends Component {
     state = {
-        circuitBreakerSize: [12, 24, 36, 0, 0, 0],
+        circuitBreakerSize: [6, 6, 6, 0, 0, 0],
+        upstreamBreaker: 180,
         phase: [],
         numberPoles: 6,
-        name: "Sample Name"
+        name: "Sample Name",
+        mostCB: 12
     };
-    toggleSingleOrThree = e => {
-        e.preventDefault();
-        let newOption =
-          this.state.phase === "Single" ? "Three" : "Single";
-    
-        this.clearInput(this.state.phase);
-        this.setState({
-          phase: newOption
-        });
-      };
-       /* renders the button select for wattage and current  */
-  renderSingleOrThree = () => {
-    var options = ["Single", "Three"];
-    return options.map((op, key) => {
-      const buttonClass =
-        this.state.phase === op
-          ? "button-active SingleThree"
-          : "button-inactive SingleThree";
-      return (
-        <button
-          id={op}
-          name="phase"
-          className={buttonClass}
-          key={key}
-          onClick={this.toggleSingleOrThree}
-        >
-          {op}
-        </button>
-      );
-    });
-  };
-
- 
     onChangeInput = e => {
         var name = e.target.name;
         var value = name === "name" ? e.target.value : parseFloat(e.target.value);
@@ -87,96 +61,148 @@ class SingleLineDiagram extends Component {
             () => console.log(name, value)
         );
     };
-    renderButtons(id, num){
-        const buttonArray = range(0, num);
+    renderButtons = (id) => {
+        console.log("render buttons")
+        const buttonArray = range(0, this.state.numberPoles);
         console.log(buttonArray);
         const buttons = buttonArray.map((option, key) => {
             return (
-              <button
-                id={id}
-                key={key}
-                value={option}
-                onClick={this.onButtonClick}
-              >
-                {option}
-              </button>
+                <button
+                    id={id}
+                    key={key}
+                    value={option}
+                    className="SLD button"
+                    onClick={this.onButtonClick}
+                >
+                    {option}
+                </button>
             );
-          });
-          return <div>{buttons}</div>;
+        });
+        return <div>{buttons}</div>;
+    }
+    onButtonClick = e => {
+        e.preventDefault();
+        var name = e.target.name;
+        var value = this.isSelectable(e.target.id)
+            ? e.target.value
+            : parseFloat(e.target.value);
+
+        this.clearInput(name);
+        this.setState(
+            {
+                [name]: value
+            },
+            () => console.log(name, value)
+        );
+    };
+    renderSLD() {
+        const cbs = this.state.circuitBreakerSize;
+        const returnCB = [];
+        const len  = this.state.numberPoles;
+        for (var i = 0; i < len;i = i + 2) {
+            returnCB.push(
+            <div className="breaker">
+                <p className="breakerSize"> {cbs[i]} </p>
+                <img className = "CBL" src={SinglePhaseCBL} />
+                <img className = "Line" src={Line} />
+                <img className = "CBR" src={SinglePhaseCBR} />              
+                <p className="breakerSize"> {cbs[i+1]} </p>
+            </div>
+            )
+        }
+        return (
+            returnCB
+        )
     }
     render() {
         return (
             <div>
                 <h1 className="SLD"> Single Line Diagram </h1>
                 <p className="SLD"> Quick & easy to use Single Line Diagram mockups.</p>
-                
-                <h1 className="SLD"> Plan it out</h1>   
-                <div className="container-white SLD">
-                    <div>
-                        <h3 className="SLD">  Name for diagram</h3>
-                        <input onChange={this.onChangeInput} />
 
-                        <div className="slider-holder">
-                            <h3 className="SLD"> Upstream Breaker Size</h3>
-                            <PrettoSlider
-                                id="upstreamBreaker"
-                                defaultValue={80}
-                                valueLabelDisplay={'auto'}
-                                onChange={this.onChangeInput}
-                            />
-                        </div>
-
-                        <div className="slider-holder">
-                            <h3 className="SLD"> Number of Poles</h3>
-                            <PrettoSlider
-                                defaultValue={18}
-                                valueLabelDisplay={'auto'}
-                                onChange={this.onChangeInput}
-                            />
-                        </div>
-
-                        <div className="slider-holder">
-                            <h3 className="SLD">Most cb are:</h3>
-                            <PrettoSlider defaultValue={45} valueLabelDisplay={'auto'} />
-                        </div>
+                <h1 className="SLD"> Plan it out</h1>
+                <div className="SLD holder">
+                    <div className="container-white SLD">
                         <div>
-                            <h3 className="SLD"> The phase for most poles is</h3>
-                            <button className="SLD active"> Single Phase </button>
-                            <button className="SLD inactive"> Three Phase</button>
-                        </div>
+                            <h3 className="SLD">  Name for diagram</h3>
+                            <input onChange={this.onChangeInput} />
+                            <div className="slider-holder">
+                                <h3 className="SLD"> Upstream Breaker Size</h3>
+                                <PrettoSlider
+                                    id="upstreamBreaker"
+                                    defaultValue={80}
+                                    valueLabelDisplay={'auto'}
+                                    onChange={(e, val) => {
+                                        console.log(val)
+                                        var upstreamBreaker = this.state.upstreamBreaker;
+                                        this.setState(
+                                            {
+                                                upstreamBreaker: val
+                                            },
+                                            () => console.log(upstreamBreaker)
+                                        );
+                                    }}
+                                />
+                                <p className="breakerSize"> {this.state.upstreamBreaker}</p>
+                            </div>
+                            <div className="slider-holder">
+                                <h3 className="SLD"> Number of Poles</h3>
+                                <PrettoSlider
+                                    defaultValue={18}
+                                    step={3}
+                                    valueLabelDisplay={'auto'}
+                                    onChange={(e, val) => {
+                                        console.log(val)
+                                        var numberPoles = this.state.numberPoles;
+                                        this.setState(
+                                            {
+                                                numberPoles: val
+                                            },
+                                            () => console.log(numberPoles)
+                                        );
+                                    }}
+                                />
+                                <p className="breakerSize"> {this.state.numberPoles}</p>
 
-                        <div>
-                            <h3> select empty breakers</h3>
-                            {this.renderButtons}
-                            <button className="SLD button"> 1 </button>
-                            <button className="SLD active"> 6 </button>
+                            </div>
+
+                            <div className="slider-holder">
+                                <h3 className="SLD">Most cb are:</h3>
+                                <PrettoSlider
+                                    defaultValue={45}
+                                    valueLabelDisplay={'auto'}
+                                />
+                                <p className="breakerSize"> {this.state.mostCB}</p>
+
+                            </div>
+                            <div>
+                                <h3 className="SLD"> The phase for most poles is</h3>
+                                <button
+                                    className="SLD active"
+                                    value="single"
+                                /* on clikc toogle single to triple phase. */
+                                >
+                                    Single Phase
+                                     </button>
+                                <button
+                                    className="SLD inactive"
+                                    value="single">
+                                    Three Phase
+                                </button>
+                            </div>
+
+                            <div>
+                                <h3> select empty breakers</h3>
+                                {this.renderButtons("circuitBreakerSize")}
+
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="container-white SLD">
-                    <div> Upstream breaker size : 200A</div>
-                    <div>
-                        <div className="breaker">
-                            <p className="breakerSize"> 26A</p>
-                            <div className="vertline"> </div>
-                            <div className="horizLine"></div>
-                            <p className="breakerSize"> 36A </p>
+                    <div className="container-white SLD">
+                        <div> Upstream Breaker Size{this.state.upstreamBreaker} A</div>
+                            {this.renderSLD()}
                         </div>
-                        <div className="breaker">
-                            <p className="breakerSize"> 12A</p>
-                            <div className="vertline"> </div>
-                            <div className="horizLine"></div>
-                            <p className="breakerSize"> 16A</p>
-                        </div>
-                        <div className="breaker">
-                            <p className="breakerSize"> 12A</p>
-                            <div className="vertline"> </div>
-                            <div className="horizLine"></div>
-                            <p className="breakerSize"> 16A</p>
-                        </div>
-
                     </div>
-                </div>
             </div>
         );
     }

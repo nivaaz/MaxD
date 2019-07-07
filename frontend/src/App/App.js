@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import Building from '../images/Building.svg'
-import SukaraWhite from '../images/sukara-logo-white.svg'
 import CableLady from '../images/cable-lady.svg'
 
 class App extends Component {
