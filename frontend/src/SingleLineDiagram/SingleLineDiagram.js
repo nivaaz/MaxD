@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./SingleLineDiagram.css";
 import Slider from '@material-ui/lab/Slider';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { range } from "../utils/calcFunctions.js";
 import Line from '../images/Line.svg'
 import SinglePhaseCBL from '../images/SinglePhaseCBL.svg'
@@ -41,6 +41,7 @@ const PrettoSlider = withStyles({
 class SingleLineDiagram extends Component {
     state = {
         circuitBreakerSize: [6, 6, 6, 0, 0, 0],
+        circuitBreakerName: ["circuit1", "circuit2", "circuit3", "circuit4", "circuit5", "circuit6"],
         upstreamBreaker: 180,
         mostPhase: 1,
         phase: [],
@@ -48,9 +49,23 @@ class SingleLineDiagram extends Component {
         name: "SLD Name",
         mostCB: 12
     };
+    
     onChangeInput = e => {
-        const value = e.target.value;
+        let value = e.target.value;
         const name = e.target.name;
+        const key = e.target.id;
+        console.log(name, key, value)
+        /* name for each of the breakers */
+        if (name == "circuitBreakerSize"){
+            let cb = this.state.circuitBreakerSize;
+            cb[key-1] = e.target.value;
+            value = cb;
+        }
+        if (name == "circuitBreakerName"){
+            let cb = this.state.circuitBreakerName;
+            cb[key-1] = e.target.value;
+            value = cb;
+        }
         this.setState(
             {
                 [name]: value
@@ -130,7 +145,7 @@ class SingleLineDiagram extends Component {
                 </button>
             );
         });
-        return <div>{buttons}</div>;
+        return <div className = "SLD emptyButtons" >{buttons}</div>;
     }
     setMostCb = () => {
         let cb = this.state.circuitBreakerSize;
@@ -150,17 +165,29 @@ class SingleLineDiagram extends Component {
     }
     setnumPoles = () => {
         let cb = this.state.circuitBreakerSize;
+        let names = this.state.circuitBreakerName;
+        const numPole = this.state.numberPoles;
+        const len =cb.length;
         // num poles 
         let most = this.state.mostCB;
-        for (let j = 0; j< this.state.numberPoles ; j++){
-            if ((j < cb.length) && (cb[j]!=0)){
-                cb[j] = most;
+        if (numPole > len){
+            for (let j = 0; j< numPole ; j++){
+                if ((j < len) && (cb[j]!=0)){
+                    cb[j] = most;
+                }
+                cb.push(most)
+                names.push("name")
             }
-            cb.push(most)
+        } else if (numPole < len ){
+                for (let j=numPole; j<len;j++){
+                    cb.pop();
+                    names.pop();
+                }
         }
         this.setState(
             {
-                circuitBreakerSize: cb
+                circuitBreakerSize: cb,
+                circuitBreakerName: names
             },
             () => console.log("set numPoles "+cb)
         );
@@ -181,26 +208,44 @@ class SingleLineDiagram extends Component {
         const name = this.state.name;
             return <h3> {name} </h3> 
     }
+
     renderSLD=()=> {
         const cbs = this.state.circuitBreakerSize;
         const returnCB = [];
         const len  = this.state.numberPoles;
-        let cb;
-       if (this.state.mostPhase == 1){
-         cb = SinglePhaseCBL;
-       } else {         
-        cb = ThreePhaseCBL;
-    }
+        let names = this.state.circuitBreakerName;
+        let cb = (this.state.mostPhase == 1)? SinglePhaseCBL:ThreePhaseCBL ;
+        
         for (var i = 0; i < len;i = i + 2) {
             returnCB.push(
             <div key={i} className="breaker">
+                
                 <p id={i} className="breakerNum"> {i+1} </p>
-                <p id={i} className="breakerSize"> {cbs[i]} </p>
+                <input id={i+1} 
+                className="breakerName"
+                defaultValue={names[i]}
+                name = "circuitBreakerName"
+                onChange={this.onChangeInput} />
+                 
+                 <input id={i} name ="circuitBreakerSize"
+                    className="breakerSize"
+                    defaultValue={cbs[i]}
+                    onChange={this.onChangeInput} />
                 <img id={i} className = "CBL" src={cb} />
-                <img id={i} className = "Line" src={Line} />
-                <img id={i} className = "CBR" src={cb} />              
-                <p id={i} className="breakerSize"> {cbs[i+1]}</p>
-                <p id={i} className="breakerNum"> {i+2} </p>
+                
+                <img  className = "Line" src={Line} />
+                
+                <img id={i+2} className = "CBR" src={cb} />              
+                <input id={i+2} className="breakerSize"
+                    name ="circuitBreakerSize"
+                    defaultValue={cbs[i+1]} 
+                    onChange={this.onChangeInput}/>
+                <input id={i+2} 
+                    className="breakerName"
+                    name="circuitBreakerName"
+                    defaultValue={names[i+1]}
+                    onChange={this.onChangeInput} />
+                <p id={i+2} className="breakerNum"> {i+2} </p>
 
             </div>
             )
@@ -235,8 +280,9 @@ class SingleLineDiagram extends Component {
                                 <h3 className="SLD"> Number of Poles</h3>
                                 <PrettoSlider
                                     id = "numberPoles"
+                                    min = {6}
                                     defaultValue={6}
-                                    step={3}
+                                    step={6}
                                     valueLabelDisplay={'auto'}
                                     onChangeCommitted={ (e, val)=>{this.onChangeSlider('numberPoles', val)}}
                              
@@ -263,7 +309,7 @@ class SingleLineDiagram extends Component {
                             </div>
 
                             <div>
-                                <h3> select empty breakers</h3>
+                                <h3 className="SLD"> Select Empty Breakers</h3>
                                 {this.renderButtons("circuitBreakerSize")}
 
                             </div>

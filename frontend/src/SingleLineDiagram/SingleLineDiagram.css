@@ -7,6 +7,9 @@ h2.SLD, h3.SLD, h4.SLD{
 } 
 div.container-white.SLD{
     border-radius: 1em;   
+    margin: 0 auto;
+    width: unset;
+    min-width: 400px;
 }
 div.SLD.holder{
     display: grid;
@@ -53,7 +56,7 @@ p.breakerNum{
     padding: 10px;
 }
 
-/*BUTTOMS FOR SLD*/
+/*BUTTOnS FOR SLD*/
 button.SLD.active{
     background: #8200ff;
     color: white;
@@ -67,6 +70,26 @@ button.SLD.button{
     color: #8200ff;
     border:2px solid #8200ff;
     margin: 2px;
+}
+div.SLD.emptyButton {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+/*  INPUTS  */
+input.breakerSize, input.breakerName{
+    border-bottom: none;
+    height: 1em;
+    padding:0;
+    margin: 0;
+}
+input.breakerSize{
+    font-size: 8pt;
+    width: 3em;    
+}
+input.breakerName{
+    font-size: 8pt;
+    width: 5em;
+    color: #8200ff;
 }
 /* IMAGES */
 .CBL{
