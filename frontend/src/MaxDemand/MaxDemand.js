@@ -365,6 +365,7 @@ X          </button>
     return (
       <div className="grid grid-col-two">
         <h1 className="MD Pagetitle grid-span-two">Maximum Demand</h1>
+        <p className="beta">Beta</p>
         <p className="grid-span-two">A dynamic maximum demand calculator for electrical loads.</p>
 
         <form className="MaxD">

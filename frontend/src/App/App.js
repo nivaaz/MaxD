@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   render() {
-    this.apiCall();
+    // this.apiCall();
     return (
       <div className="App">        
         <div className ="grid-two" >

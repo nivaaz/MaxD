@@ -140,3 +140,19 @@ img.cableLady{
   padding-bottom: 200px;
   text-align: right;
 }
+
+@media (min-width: 10px) and (max-width: 500px){
+  h1.sukara{
+    font-size: 50pt;
+  } 
+ }
+
+@media (max-width: 1170px){
+  .center-landing-img{
+    display:none;
+  }
+  .grid-two{
+    grid-template-columns: unset;
+    }
+}
+

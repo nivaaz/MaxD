@@ -11,7 +11,7 @@ import SingleLineDiagram from "./SingleLineDiagram";
 
 const routing = (
   <Router>
-    <div>
+    <div className="routingRoot">
       <div className="navbar">
         <Link to="/"> Home </Link>
         <Link to="/MaxDemand">Maximum Demand</Link>

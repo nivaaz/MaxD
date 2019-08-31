@@ -50,7 +50,10 @@ button.landingButton{
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+p.beta{
+  text-align: center;
+  margin-left: 50 vw;
+}
 .page{
   background-color: #8200ff;
 background-image: linear-gradient(19deg, #390090 0%,#8200ff  100%);

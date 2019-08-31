@@ -59,3 +59,51 @@ export function range (start, end){
   }
   return a
 }
+
+export function allocatePhases(data) {
+  let Phases = [3]; /*check if this is 0-3 or 0-2 */
+  let newData = data.sort(data.current); //sort data by current.
+  
+  for (let i = 0; i < data.length; i ++ ){
+    if (i%2){     /* if even  */
+    Phases[0].push(newData[i])
+    Phases[1].push(newData[i+1])
+    Phases[2].push(newData[i+2])
+    
+    } else {  /* if odd*/
+      Phases[0].push(newData[i+2])
+      Phases[1].push(newData[i+1])
+      Phases[2].push(newData[i])
+    }
+  }
+  return Phases;
+}
+// with shift algo
+export function allocatePhasesCircular(data) {
+  let Phases = [3]; /*check if this is 0-3 or 0-2 */
+  let newData = data.sort(data.current); //sort data by current.
+  let x = [0, 1, 2];
+  for (let i = 0; i < data.length; i=i+3 ){
+    Phases[x[0]].push(newData[i])
+    Phases[x[1]].push(newData[i+1])
+    Phases[x[2]].push(newData[i+2])
+  x = circshift(x)   
+  }
+  return Phases;
+}
+
+function circshift(ar){
+  let newArr = ar;
+  newArr[0] =ar[ar.length];  //first = end 
+  for (let i = 1; i < ar.length; i ++){
+    newArr[i] = ar[i+1]
+  }
+}
+
+export function sumPhase(Phase){
+  let sum = 0;
+  for(let i = 0 ; i<Phase.length; i ++){
+    sum= sum + (Phase[i].current);
+  }
+  return sum;
+}

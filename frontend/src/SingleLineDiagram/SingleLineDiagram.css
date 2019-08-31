@@ -16,7 +16,7 @@ div.SLD.holder{
 }
 /*SLIDER*/
 .slider-holder{
-    width: 200px;
+    width: 350px;
     margin: 0 auto;
     text-align: left;
 }
@@ -46,6 +46,11 @@ p.breakerSize{
     color: #8200ff;
     display: inline;
     padding: 5px;
+}
+p.breakerNum{
+    color: #bbb;
+    display: inline;
+    padding: 10px;
 }
 
 /*BUTTOMS FOR SLD*/
@@ -78,4 +83,7 @@ button.SLD.button{
     margin: 0;
     display:inline-flex;
     margin-bottom: -7px;
+}
+.beta{
+   font-size: 5pt; 
 }
