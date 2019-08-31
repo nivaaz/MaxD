@@ -15,6 +15,7 @@ const routing = (
       <div className="navbar">
         <Link to="/"> Home </Link>
         <Link to="/MaxDemand">Maximum Demand</Link>
+        <Link to="/SingleLineDiagram">Single Line Diagram</Link>
       </div>
       <Switch>
         <Route exact path="/" component={App} />
