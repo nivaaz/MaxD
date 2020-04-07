@@ -4,6 +4,7 @@ h1.SLD{
 }
 h2.SLD, h3.SLD, h4.SLD{
     color: #8200ff;
+    text-align: center;
 } 
 div.container-white.SLD{
     border-radius: 1em;   
@@ -71,9 +72,9 @@ button.SLD.button{
     border:2px solid #8200ff;
     margin: 2px;
 }
-div.SLD.emptyButton {
+div.SLD.emptyButtons {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(10, 1fr);
 }
 /*  INPUTS  */
 input.breakerSize, input.breakerName{
@@ -106,7 +107,4 @@ input.breakerName{
     margin: 0;
     display:inline-flex;
     margin-bottom: -7px;
-}
-.beta{
-   font-size: 5pt; 
 }

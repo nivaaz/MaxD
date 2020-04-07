@@ -256,7 +256,6 @@ class SingleLineDiagram extends Component {
         return (
             <div>
                 <h1 className="Pagetitle SLD"> Single Line Diagram </h1>
-                <p className="beta">Beta</p>
 
                 <p className="SLD"> Quick & easy to use Single Line Diagram mockups.</p>
 

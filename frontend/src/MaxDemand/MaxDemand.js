@@ -25,9 +25,9 @@ class MaxDemand extends Component {
     console.log("TOTAL W is currently " + this.state.totalW)
 
     this.state.data.map(
-        option => (sum = sum + (option.loadRepetitions * option.wattage))
-      );
-      return sum;
+      option => (sum = sum + (option.loadRepetitions * option.wattage))
+    );
+    return sum;
   };
   /* update the total current load */
   setTotalA = () => {
@@ -93,7 +93,7 @@ class MaxDemand extends Component {
   setTotals = () => {
     var totalA = this.setTotalA();
     var totalW = this.setTotalW();
-    
+
     console.log("totals are: ", totalA, totalW)
     this.setState({
       totalA: totalA,
@@ -115,23 +115,23 @@ class MaxDemand extends Component {
         console.log("delete done")
       }
     );
-    
+
     amps = this.setTotalA();
     wattage = this.setTotalW();
 
-      this.setState({
-        totalA: amps, 
-        totalW: wattage
-      }, ()=>{
-       console.log("amps/wattage added")
-      })
+    this.setState({
+      totalA: amps,
+      totalW: wattage
+    }, () => {
+      console.log("amps/wattage added")
+    })
 
   };
   /* on the change of custom input */
   onChangeInput = e => {
     var name = e.target.name;
     var value = name === "name" ? e.target.value : parseFloat(e.target.value);
-    console.log (e.target.name)
+    console.log(e.target.name)
     console.log(e.target.value)
     this.setState(
       {
@@ -172,7 +172,7 @@ class MaxDemand extends Component {
   };
 
   renderPowerFactorButtons = () => {
-    const pf = [ 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
+    const pf = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
     const buttons = pf.map((option, key) => {
       // console.log(this.state.powerFactor === option, this.state.powerFactor, option)
       const buttonClass =
@@ -192,7 +192,7 @@ class MaxDemand extends Component {
         </button>
       );
     });
-    return <div>{buttons}</div>;
+    return <div className="pf-buttons">{buttons}</div>;
   };
 
   renderDiversityButtons = () => {
@@ -228,12 +228,12 @@ class MaxDemand extends Component {
         </button>
       );
     });
-    return <div>{buttons}</div>;
+    return <div className="pf-buttons">{buttons}</div>;
   };
 
   renderVoltageButtons = () => {
     const voltageOptions = [230, 240, 400, 415];
-    return voltageOptions.map((option, key) => {
+    let vop = voltageOptions.map((option, key) => {
       // console.log(this.state.voltage === option, this.state.voltage, option)
       const buttonClass =
         this.state.voltage && this.state.voltage === option
@@ -252,6 +252,13 @@ class MaxDemand extends Component {
         </button>
       );
     });
+    vop.push(<input
+      onChange={this.onChangeInput}
+      id="voltage-input"
+      type="number"
+      name="voltage"
+    />)
+    return <div className="voltage_holder"> {vop} </div>
   };
 
   toggleCurrentOrWattage = e => {
@@ -300,147 +307,145 @@ class MaxDemand extends Component {
   renderTotalLoadButton() {
 
     const options = ["A", "W"];
-    if (this.state.data.length === 0){
+    if (this.state.data.length === 0) {
       return <h3> Added loads will show here </h3>;
-    }else{
-    return options.map((op, key) => {
-      const buttonClass =
-        this.state.totalLoad === op ? "button-active" : "button-inactive";
-      return (
-        <button
-          className={"totalLoad " + buttonClass}
-          key={key}
-          value={op}
-          onClick={this.toggleTotalLoadOptions}
-          id="totalLoad"
-          name="totalLoad"
-        >
-          {op}
-        </button>
-      );
-    });
-  }
+    } else {
+      return options.map((op, key) => {
+        const buttonClass =
+          this.state.totalLoad === op ? "button-active" : "button-inactive";
+        return (
+          <button
+            className={"totalLoad " + buttonClass}
+            key={key}
+            value={op}
+            onClick={this.toggleTotalLoadOptions}
+            id="totalLoad"
+            name="totalLoad"
+          >
+            {op}
+          </button>
+        );
+      });
+    }
   }
   renderTotalLoad = () => {
-    if (this.state.data.length === 0){
+    if (this.state.data.length === 0) {
       return null;
     } else {
-      if(this.state.totalLoad === "A"){
+      if (this.state.totalLoad === "A") {
         return (
           <h2 className="totalLoad MD">Total Load is {this.state.totalA}</h2>
         )
-      } else if(this.state.totalLoad === "W"){
+      } else if (this.state.totalLoad === "W") {
         return (
           <h2 className="totalLoad MD">Total Load is {this.state.totalW}</h2>
         )
-      }   
+      }
+    }
   }
-}
-  
+
   renderLoadList = () => {
-    
+
     return this.state.data.map((load, key) => {
       return (
-        <div key={key} className="cat-data grid">
-          <p className = "load-data"> {load.loadRepetitions} </p>
-          <p className = "load-data"> {load.name} </p>
-          <p className = "load-data"> {load.voltage} </p>
-          <p className = "load-data"> {load.wattage} </p>
-          <p className = "load-data"> {load.current} </p>
-          <p className = "load-data"> {load.powerFactor} </p>
-          <p className = "load-data"> {load.diversity} </p>
+        <div key={key} className="cat-data">
+          <p className="load-data"> {load.loadRepetitions} </p>
+          <p className="load-data"> {load.name} </p>
+          <p className="load-data"> {load.voltage} </p>
+          <p className="load-data"> {load.wattage} </p>
+          <p className="load-data"> {load.current} </p>
+          <p className="load-data"> {load.powerFactor} </p>
+          <p className="load-data"> {load.diversity} </p>
           <button
             id={key}
             onClick={this.onClickDeleteLoad}
             className="button-delete-load"
           >
-X          </button>
+            X          </button>
         </div>
       );
     });
-  
+
   };
 
   render() {
     return (
-      <div className="grid grid-col-two">
-        <h1 className="MD Pagetitle grid-span-two">Maximum Demand</h1>
-        <p className="beta">Beta</p>
-        <p className="grid-span-two">A dynamic maximum demand calculator for electrical loads.</p>
-
-        <form className="MaxD">
-          <div className="container-white">
-            <h2 className="picker title">Name your load</h2>
-            <input
-              value={this.state.name}
-              type="text"
-              onChange={this.onChangeInput}
-              id="name"
-              name="name"
-            />
-          </div>
-          <div className="container-white">
-            <h2 className="picker title">How many repitions of this load?</h2>
-            <input
-              defaultValue={this.state.loadRepetitions}
-              type="number"
-              onChange={this.onChangeInput}
-              id="loadRepetitions"
-              name="loadRepetitions"
-            />
-          </div>
-          <div className="container-white">
-            <h2 className="picker title">Pick a Voltage</h2>
-            <div className="voltage">
-              {this.renderVoltageButtons()}
+      <div className="top">
+        <h1 className="MD Pagetitle">Maximum Demand</h1>
+        <p classname="block"> A dynamic maximum demand calculator for electrical loads.</p>
+        
+        <div className="maxDContainer">
+        
+          <div className="maxDL">
+            <div className="container-white">
+              <h2 className="picker title">Name your load</h2>
               <input
+                value={this.state.name}
+                type="text"
                 onChange={this.onChangeInput}
-                id="voltage-input"
-                type="number"
-                name="voltage"
+                id="name"
+                name="name"
               />
             </div>
+            <div className="container-white">
+              <h2 className="picker title">How many repitions of this load?</h2>
+              <input
+                defaultValue={this.state.loadRepetitions}
+                type="number"
+                onChange={this.onChangeInput}
+                id="loadRepetitions"
+                name="loadRepetitions"
+              />
+            </div>
+            <div className="container-white">
+              <h2 className="picker title">Pick a Voltage</h2>
+              <div className="voltage">
+                {this.renderVoltageButtons()}
+              </div>
+            </div>
+
+            <div className="container-white WI">
+              <h2 className="WI picker title">Add a </h2>
+              <div className="holder-WI">{this.renderCurrentOrWattage()}</div>
+              <input
+                defaultValue="10"
+                id={`${this.state.selectedOption}-input`}
+                type="number"
+                onChange={this.onChangeInput}
+                name={this.state.selectedOption}
+              />
+            </div>
+            <div className="container-white">
+              <h2 className="picker title"> Add a power factor</h2>
+              {this.renderPowerFactorButtons()}
+            </div>
+            <div className="container-white">
+              <h2 className="picker title"> Add a diversity</h2>
+              {this.renderDiversityButtons()}
+            </div>
+            <button className="addLoad" onClick={this.onSubmit}>
+              Add load
+        </button>
           </div>
 
-          <div className="container-white WI">
-            <h2 className="WI picker title">Add a </h2>
-            <div className="holder-WI">{this.renderCurrentOrWattage()}</div>
-            <input
-              defaultValue="10"
-              id={`${this.state.selectedOption}-input`}
-              type="number"
-              onChange={this.onChangeInput}
-              name={this.state.selectedOption}
-            />
-          </div>
-          <div className="container-white">
-            <h2 className="picker title"> Add a power factor</h2>
-            {this.renderPowerFactorButtons()}
-          </div>
-          <div className="container-white">
-            <h2 className="picker title"> Add a diversity</h2>
-            {this.renderDiversityButtons()}
-          </div>
-        </form>
-        <div className="MaxD">
-          <div className="container-white-load">
-            <div className="cat-name grid">
-              <p class ="load-title"> Amount </p>
-              <p class ="load-title"> Name </p>
-              <p class ="load-title"> Voltage </p>
-              <p class ="load-title"> Wattage </p>
-              <p class ="load-title"> Current </p>
-              <p class ="load-title"> Power Factor </p>
-              <p class ="load-title"> Diversity </p>
+          <div className="maxDR">
+              <h1 className = "picker title"> Added Loads </h1>
+              <div className="cat-name">
+                <p class="load-title"> # </p>
+                <p class="load-title"> Name </p>
+                <p class="load-title"> V </p>
+                <p class="load-title"> W </p>
+                <p class="load-title"> A </p>
+                <p class="load-title"> PF </p>
+                <p class="load-title"> Diversity </p>
+              </div>
+              {this.renderLoadList()}
+              <div className="totalLoads">
+              {this.renderTotalLoad()}
+              {this.renderTotalLoadButton()}
+              </div>
             </div>
-            {this.renderLoadList()}
-           {this.renderTotalLoad()}
-            {this.renderTotalLoadButton()}
           </div>
-        </div>
-        <button className="addLoad" onClick={this.onSubmit}>
-          Add load
-        </button>
       </div>
     );
   }

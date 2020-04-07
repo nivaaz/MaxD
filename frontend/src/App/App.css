@@ -1,12 +1,4 @@
-/**
 
-https://flatuicolors.com/palette/de
-**/
-#root{
-  padding: none;
-  margin: none;
-  min-height: 100vh;
-}
 .App {
   text-align: center;
   margin:0 auto;
@@ -18,20 +10,7 @@ h1, h2, h3, h4, p{
   font-weight: 100;
   font-size: large;
 }
-h1.sukara, h1.engineering{
-  padding: 0;
-  margin: 0;
-}
-h1.sukara{
-  font-size: 100pt;
-  font-family: 'Muli', sans-serif;
-  color:white;
-}
-h1.engineering{
-  font-family: 'Muli', sans-serif;
-  color: #7d00ff;
-  text-transform: uppercase;
-}
+
 button.landingButton{
   font-size: 15pt;
   color: white; 
@@ -52,18 +31,9 @@ button.landingButton{
 .App-link {
   color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .page{
   background-color: #8200ff;
-background-image: linear-gradient(19deg, #390090 0%,#8200ff  100%);
+  background-image: linear-gradient(19deg, #390090 0%,#8200ff  100%);
   margin: 1em;
   padding: 1em;
   border-radius: 1em;
@@ -88,11 +58,21 @@ background-image: linear-gradient(19deg, #390090 0%,#8200ff  100%);
     margin: 0 auto;
     text-align: center;
     font-size: 10pt;
+    padding:1em;
   }
   p.info{
   font-family: 'Roboto', sans-serif;
   color: white;
-
+  }
+  .sampleProduct{
+    background-color: rgba(255, 255, 255, 0.212);
+    padding:2em;
+    margin:2em;
+    border-radius:1em;
+  }
+  h3.appHeading{
+    color: white;
+    font-weight: bold;  
   }
   .pageContainer{
     display: grid;
@@ -106,10 +86,7 @@ background-image: linear-gradient(19deg, #390090 0%,#8200ff  100%);
     text-align: center;
     display: none;
   }
-  .grid-two{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+ 
   .center-landing{
     text-align: center;
     margin: 0 auto;
@@ -141,18 +118,44 @@ img.cableLady{
   text-align: right;
 }
 
-@media (min-width: 10px) and (max-width: 500px){
-  h1.sukara{
-    font-size: 50pt;
-  } 
- }
+.navbar{
+  color: #333;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: left;
+  padding: 1em;
+  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.219);
+}
+a{
+  font-size: smaller;
+}
 
-@media (max-width: 1170px){
+.container-white{
+  background-color: white;
+  padding: 1em;
+  display: grid;
+  border-radius: 1em;
+}
+/**
+    media sizing 
+**/
+@media screen and (min-width: 10px) and (max-width: 750px){
+  h1.sukara{
+    font-size: unset;
+    font-size: 40pt;
+  }
   .center-landing-img{
     display:none;
   }
-  .grid-two{
-    grid-template-columns: unset;
-    }
+
+ }
+
+@media  (min-width: 751px) and (max-width: 1170px){
+  .center-landing-img{
+    display:none;
+  }
+   h1.sukara{
+    font-size: 100pt;
+  }
 }
 
