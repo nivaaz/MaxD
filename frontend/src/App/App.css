@@ -70,6 +70,7 @@ button.landingButton{
     border-radius:1em;
     height: max-content;
     margin: 0 auto;
+    text-align: center;
   }
   .sampleProdContainer{
     display: grid;
