@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 .App {
   text-align: center;
   margin:0 auto;
@@ -6,7 +6,7 @@
 }
 h1, h2, h3, h4, p{
   color: whitesmoke;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Quicksand';
   font-weight: 100;
   font-size: large;
 }
@@ -57,7 +57,6 @@ button.landingButton{
   p{
     margin: 0 auto;
     text-align: center;
-    font-size: 10pt;
     padding:1em;
   }
   p.info{
@@ -65,15 +64,19 @@ button.landingButton{
   color: white;
   }
   .sampleProduct{
-    background-color: rgba(255, 255, 255, 0.212);
-    margin: 0 auto;
+    background-color: #3a0090d0;
     width: fit-content;
     padding:1em;
     border-radius:1em;
+    height: max-content;
+    margin: 0 auto;
   }
   .sampleProdContainer{
     display: grid;
     grid-gap: 1em;
+  }
+  .sampleProduct:hover{
+    box-shadow: 0px 0px 20px 0px #7d00ff;
   }
   h3.appHeading{
     color: white;
@@ -93,9 +96,12 @@ button.landingButton{
   }
 .center-landing-img{
   position: absolute;
-  top: 30%;
+  top: 35%;
   right: 0;
   }
+img.logo{
+  margin:2em;
+}
 /*icons */
 .fas.fa-solar-panel{
   color: white;
@@ -126,6 +132,7 @@ img.cableLady{
   padding: 1em;
   box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.219);
 }
+
 a{
   font-size: smaller;
 }
@@ -136,6 +143,34 @@ a{
   display: grid;
   border-radius: 1em;
   text-align:center;
+}
+section{
+  text-align: left;
+  padding: 10em;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.homeSection{
+  align-items: flex-start;
+}
+
+b{
+  color: #8200ff;
+}
+.title{
+  font-weight: bold;
+}
+.subtext p{
+  font-family: 'Quicksand', sans-serif;
+  display: inline-block;
+  padding: none;
+  margin: none;
+  font-size: xx-large;
+}
+.intro p{
+  top: 0;
+  font-family: 'Quicksand', sans-serif;
 }
 /**
     media sizing 

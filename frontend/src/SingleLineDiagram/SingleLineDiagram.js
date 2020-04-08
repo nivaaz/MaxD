@@ -259,7 +259,6 @@ class SingleLineDiagram extends Component {
 
                 <p className="SLD"> Quick & easy to use Single Line Diagram mockups.</p>
 
-                <h1 className="SLD"> Plan it out</h1>
                 <div className="containerSLD">
                     <div className="container-white SLD">
                         <div>
