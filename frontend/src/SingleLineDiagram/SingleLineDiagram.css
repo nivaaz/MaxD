@@ -18,6 +18,9 @@ div.SLD.holder{
     text-align: center;
     margin: 0 auto;
 }
+.container-white.SLD.right{
+    display: unset;
+}
 /*SLIDER*/
 .slider-holder{
     width: 350px;
@@ -56,6 +59,11 @@ p.breakerNum{
     display: inline;
     padding: 10px;
 }
+h3.sldname{
+    color: #8200ff;
+    font-size: large;
+    font-weight: bold;
+}
 
 /*BUTTOnS FOR SLD*/
 button.SLD.active{
@@ -74,7 +82,8 @@ button.SLD.button{
 }
 div.SLD.emptyButtons {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 4px;
 }
 /*  INPUTS  */
 input.breakerSize, input.breakerName{
@@ -108,3 +117,16 @@ input.breakerName{
     display:inline-flex;
     margin-bottom: -7px;
 }
+.containerSLD{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: fit-content;
+}
+
+@media screen and (min-width:200px) and (max-width:1300px){
+    .containerSLD{
+      grid-template-columns: unset;
+      grid-gap: 1em;
+    }
+}
+  

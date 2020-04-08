@@ -206,7 +206,7 @@ class SingleLineDiagram extends Component {
     }
     renderName = ()=>{
         const name = this.state.name;
-            return <h3> {name} </h3> 
+            return <h3 className="sldname"> {name} </h3> 
     }
 
     renderSLD=()=> {
@@ -260,7 +260,7 @@ class SingleLineDiagram extends Component {
                 <p className="SLD"> Quick & easy to use Single Line Diagram mockups.</p>
 
                 <h1 className="SLD"> Plan it out</h1>
-                <div className="SLD holder">
+                <div className="containerSLD">
                     <div className="container-white SLD">
                         <div>
                             <h3 className="SLD">  Name for diagram</h3>
@@ -314,7 +314,7 @@ class SingleLineDiagram extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="container-white SLD">
+                    <div className="container-white SLD right">
                         <div> {this.renderName()} </div> 
                         <div> Upstream Breaker Size {this.state.upstreamBreaker} A</div>
                             {this.renderSLD()}

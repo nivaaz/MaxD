@@ -2,7 +2,7 @@
 .App {
   text-align: center;
   margin:0 auto;
-  background-color: white;
+  height: 100%;
 }
 h1, h2, h3, h4, p{
   color: whitesmoke;
@@ -66,9 +66,14 @@ button.landingButton{
   }
   .sampleProduct{
     background-color: rgba(255, 255, 255, 0.212);
-    padding:2em;
-    margin:2em;
+    margin: 0 auto;
+    width: fit-content;
+    padding:1em;
     border-radius:1em;
+  }
+  .sampleProdContainer{
+    display: grid;
+    grid-gap: 1em;
   }
   h3.appHeading{
     color: white;
@@ -86,15 +91,10 @@ button.landingButton{
     text-align: center;
     display: none;
   }
- 
-  .center-landing{
-    text-align: center;
-    margin: 0 auto;
-    padding-top: 20vh;
-  }
 .center-landing-img{
-    text-align: right;
-    padding-top: 10vh;
+  position: absolute;
+  top: 30%;
+  right: 0;
   }
 /*icons */
 .fas.fa-solar-panel{
@@ -135,15 +135,12 @@ a{
   padding: 1em;
   display: grid;
   border-radius: 1em;
+  text-align:center;
 }
 /**
     media sizing 
 **/
 @media screen and (min-width: 10px) and (max-width: 750px){
-  h1.sukara{
-    font-size: unset;
-    font-size: 40pt;
-  }
   .center-landing-img{
     display:none;
   }
@@ -153,9 +150,6 @@ a{
 @media  (min-width: 751px) and (max-width: 1170px){
   .center-landing-img{
     display:none;
-  }
-   h1.sukara{
-    font-size: 100pt;
   }
 }
 

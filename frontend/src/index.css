@@ -29,4 +29,5 @@ a{
 }
 #root{
   background-color: #2c2c54;
+  min-height: 100vh;
 }

@@ -80,11 +80,15 @@ input.launch:hover{
 h1.sukara{
   font-family: 'Muli', sans-serif;
   color:white;
+  margin: 0;
+  padding-top: 1em;
+  font-size: 40pt;
 }
 h1.engineering{
   font-family: 'Muli', sans-serif;
   color: #7d00ff;
   text-transform: uppercase;
+  font-size: xx-large;
 }
 h2{
 color: white;

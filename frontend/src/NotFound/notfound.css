@@ -14,11 +14,11 @@ i{
     padding: none;
     margin: none;
 }
-.holder{
+/* .holder{
     display:grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
-    }
+    } */
 h2.nf{
     color: #d1d8e0;
 }

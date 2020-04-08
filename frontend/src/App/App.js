@@ -15,7 +15,7 @@ class App extends Component {
     // this.apiCall();
     return (
       <div className="App">        
-        <div className ="grid-two" >
+        <div >
         <div className = "center-landing">
        <h1 className="sukara"> Sukara </h1>
           <h1 className ="engineering">Engineering</h1>
@@ -29,7 +29,7 @@ class App extends Component {
           <p> All our products are simple, easy to use and work on any device.  </p>         
           
           <h2> Our products </h2>
-          <div className = "grid-two">
+          <div className = "sampleProdContainer">
          <div className = "sampleProduct"> 
             <h3 className = "appHeading"> Single Line Diagram Generator</h3>
             <p> An instant online Single Line Diagram Generator with interactive and simple design. </p>

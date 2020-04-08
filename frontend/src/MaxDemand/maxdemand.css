@@ -5,8 +5,9 @@
 }
 .App{
   color: grey;
-  background: radial-gradient(1642.08px at 151.22% 51.4%, #E377EF 0%, #0A0E47 71.19%, #070A2F 100%);
   min-height: 100vh;
+  background-color: #2c2c54;
+  background: radial-gradient(162.92% 417.07% at 194.93% 59.56%, #E377EF 26.83%, #0A0E47 76.32%, #070A2F 96.35%);
 }
 .landing{
   min-height: 100vh;
@@ -229,6 +230,9 @@ p.load-data{
   
 }
 @media screen and (min-width:200px) and (max-width:1300px){
+  .maxDContainer{
+    grid-template-columns: unset;
+  }
   button{
     font-size: small;
     margin: 0;
@@ -236,6 +240,7 @@ p.load-data{
   input{
     font-size: smaller;
     width: 80%;
+    margin: 0 auto;
   }  
   .container-white, .container-white-load{
     margin: 0;
